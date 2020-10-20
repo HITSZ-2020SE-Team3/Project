@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="people">
+        <item>本人</item>
+        <item>老婆</item>
+        <item>孩子</item>
+        <item>父母</item>
+    </string-array>
+</resources>
