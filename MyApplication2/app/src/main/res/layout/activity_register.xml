@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_main">
+    <include layout="@layout/title_layout_register"></include><!--引入标题栏-->
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/plugin_uexgestureunlock_user_logo"
+        android:src="@drawable/default_icon" />
+    <!--三个编辑框-->
+    <EditText
+        android:id="@+id/et_user_name"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/radius_drawable_bg"
+        android:drawableLeft="@drawable/paw_code"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:hint="请输入学号"
+        android:maxLength="9"
+        android:digits="1234567890"
+        android:paddingLeft="8dp"
+        android:singleLine="true"
+        android:textColor="@android:color/background_dark"
+        android:textColorHint="#a3a3a3"
+        android:textSize="14sp" />
+    <EditText
+        android:id="@+id/et_psw"
+        android:layout_width="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="48dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/radius_drawable_bg"
+        android:drawableLeft="@drawable/paw_left"
+        android:drawablePadding="10dp"
+        android:hint="请输入密码(不超过20个字符）"
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:maxLength="20"
+        android:inputType="textPassword"
+        android:paddingLeft="8dp"
+        android:singleLine="true"
+        android:textColor="@android:color/background_dark"
+        android:textColorHint="#a3a3a3"
+        android:textSize="14sp"/>
+    <EditText
+        android:id="@+id/et_psw_again"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/radius_drawable_bg"
+        android:drawableLeft="@drawable/paw_left"
+        android:drawablePadding="10dp"
+        android:hint="请再次输入密码(不超过20个字符）"
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:maxLength="20"
+        android:inputType="textPassword"
+        android:paddingLeft="8dp"
+        android:singleLine="true"
+        android:textColor="@android:color/background_dark"
+        android:textColorHint="#a3a3a3"
+        android:textSize="14sp"/>
+
+    <EditText
+        android:id="@+id/et_psw_question"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/radius_drawable_bg"
+        android:drawableLeft="@drawable/paw_left"
+        android:drawablePadding="10dp"
+        android:hint="请输入密保问题（不超过20个字符）"
+        android:maxLength="20"
+        android:inputType="textPassword"
+        android:paddingLeft="8dp"
+        android:singleLine="true"
+        android:textColor="@android:color/background_dark"
+        android:textColorHint="#a3a3a3"
+        android:textSize="14sp"/>
+
+    <EditText
+        android:id="@+id/et_psw_answer"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/radius_drawable_bg"
+        android:drawableLeft="@drawable/paw_left"
+        android:drawablePadding="10dp"
+        android:hint="请输入密保答案（不超过10个字符）"
+        android:maxLength="10"
+        android:inputType="textPassword"
+        android:paddingLeft="8dp"
+        android:singleLine="true"
+        android:textColor="@android:color/background_dark"
+        android:textColorHint="#a3a3a3"
+        android:textSize="14sp"/>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="56dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/text_bg"
+        android:text="注册"
+        android:textColor="@android:color/white"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/btn_init_fingerprint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="指纹认证初始化"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/btn_fingerprint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="验证指纹" />
+
+    <Button
+        android:id="@+id/btn_init_gesture_unlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="设置手势密码" />
+
+    <Button
+        android:id="@+id/btn_modify_gesture_unlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="修改手势密码" />
+
+    <Button
+        android:id="@+id/btn_verify_gesture_unlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="验证手势密码" />
+    <Button
+        android:id="@+id/tv_auth_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="指纹密码" />
+</LinearLayout>

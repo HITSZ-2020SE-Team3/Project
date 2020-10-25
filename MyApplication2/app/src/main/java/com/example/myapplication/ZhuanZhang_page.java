@@ -39,7 +39,7 @@ public class ZhuanZhang_page extends AppCompatActivity {
         Text1.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ZhuanZhang_page.this, MainActivity.class);
+                Intent intent = new Intent(ZhuanZhang_page.this, zhichu_page.class);
                 startActivity(intent);
             }
         }));
