@@ -105,6 +105,8 @@ public class GestureUnlockActivity extends AppCompatActivity {
                 public void onCreateFinished(String gestureCode) {
                     // 创建手势密码完成
                     GestureUnlock.getInstance().setGestureCode(GestureUnlockActivity.this, gestureCode);
+                    Intent intent = new Intent(GestureUnlockActivity.this,OtherLoginActivity.class);
+                    startActivityForResult(intent,1);
                     GestureUnlockActivity.this.finish();
                 }
 
@@ -139,6 +141,7 @@ public class GestureUnlockActivity extends AppCompatActivity {
      */
     private void showVerifyGestureLayout() {
         toolbar.setVisibility(View.GONE);
+        final boolean[] check_state = new boolean[1];
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -153,17 +156,23 @@ public class GestureUnlockActivity extends AppCompatActivity {
                 @Override
                 public void onVerifyResult(ResultVerifyVO result) {
                     if (result.isFinished()) {
-                        //验证成功
                         Log.d(TAG, "onVerifyResult:验证成功");
+                        check_state[0] = true;
                     } else {
                         Log.d(TAG, "onVerifyResult:验证失败");
+                        check_state[0] = false;
                     }
 
                 }
 
                 @Override
                 public void closeLayout() {
-                    Intent intent = new Intent(GestureUnlockActivity.this,zhichu_page.class);
+                    Intent intent;
+                    if (check_state[0]){
+                        intent = new Intent(GestureUnlockActivity.this, zhichu_page.class);
+                    } else {
+                        intent = new Intent(GestureUnlockActivity.this, MainActivity.class);
+                    }
                     startActivityForResult(intent,1);
                     GestureUnlockActivity.this.finish();
                 }
@@ -177,7 +186,9 @@ public class GestureUnlockActivity extends AppCompatActivity {
                 @Override
                 public void onCancel() {
                     // 忘记密码使用其他方式进行
-
+                    Intent intent = new Intent(GestureUnlockActivity.this,LoginActicity.class);
+                    startActivityForResult(intent,1);
+                    GestureUnlockActivity.this.finish();
                 }
 
                 @Override
@@ -224,7 +235,9 @@ public class GestureUnlockActivity extends AppCompatActivity {
                 @Override
                 public void onCancel() {
                     // 忘记密码使用其他方式进行
-
+                    Intent intent = new Intent(GestureUnlockActivity.this,LoginActicity.class);
+                    startActivityForResult(intent,1);
+                    GestureUnlockActivity.this.finish();
                 }
 
                 @Override

@@ -111,8 +111,8 @@
 
     <Button
         android:id="@+id/btn_register"
-        android:layout_width="56dp"
-        android:layout_height="32dp"
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="15dp"
@@ -122,39 +122,4 @@
         android:textColor="@android:color/white"
         android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/btn_init_fingerprint"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="指纹认证初始化"
-        android:visibility="visible" />
-
-    <Button
-        android:id="@+id/btn_fingerprint"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="验证指纹" />
-
-    <Button
-        android:id="@+id/btn_init_gesture_unlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="设置手势密码" />
-
-    <Button
-        android:id="@+id/btn_modify_gesture_unlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="修改手势密码" />
-
-    <Button
-        android:id="@+id/btn_verify_gesture_unlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="验证手势密码" />
-    <Button
-        android:id="@+id/tv_auth_result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="指纹密码" />
 </LinearLayout>

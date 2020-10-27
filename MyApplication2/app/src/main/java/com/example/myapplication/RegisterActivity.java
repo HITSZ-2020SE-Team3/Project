@@ -79,6 +79,8 @@ public class RegisterActivity extends AppCompatActivity {
                     setResult(RESULT_OK, data);
                     // RESULT_OK为Activity系统常量，状态码为-1，
                     // 表示此页面下的内容操作成功将data返回到上一页面，如果是用back返回过去的则不存在用setResult传递data值
+                    GestureUnlock.getInstance().init(RegisterActivity.this.getApplicationContext());
+                    GestureUnlock.getInstance().createGestureUnlock(RegisterActivity.this);
                     RegisterActivity.this.finish();
                 }
             }

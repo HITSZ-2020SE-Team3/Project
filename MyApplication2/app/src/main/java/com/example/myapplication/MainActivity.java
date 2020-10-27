@@ -5,13 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.cazaea.sweetalert.SweetAlertDialog;
+import com.dds.fingerprintidentify.FingerprintIdentify;
+import com.dds.fingerprintidentify.base.BaseFingerprint;
 import com.squareup.haha.perflib.Main;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 // 跳转到指纹登录界面，并实现指纹登录功能
                 Intent intent = new Intent(MainActivity.this,OtherLoginActivity.class);
                 startActivityForResult(intent,1);
-
             }
         });
     }

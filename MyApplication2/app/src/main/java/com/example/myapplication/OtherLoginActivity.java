@@ -63,7 +63,7 @@ public class OtherLoginActivity extends AppCompatActivity {
         mInitFingerPrint = findViewById(R.id.btn_init_fingerprint);
         mStartFingerPrint = findViewById(R.id.btn_fingerprint);
         mVerifyResult = findViewById(R.id.tv_auth_result);
-        mInitGestureUnlock = findViewById(R.id.btn_init_gesture_unlock);
+        //mInitGestureUnlock = findViewById(R.id.btn_init_gesture_unlock);
         mModifyGestureUnlock = findViewById(R.id.btn_modify_gesture_unlock);
         mVerifyGestureUnlock = findViewById(R.id.btn_verify_gesture_unlock);
     }
@@ -85,7 +85,6 @@ public class OtherLoginActivity extends AppCompatActivity {
         mStartFingerPrint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Log.i(TAG, "mStartFingerPrint onClick");
                 mVerifyResult.setText("等待指纹验证结果");
                 mAlertDialog = new SweetAlertDialog(OtherLoginActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
@@ -154,13 +153,13 @@ public class OtherLoginActivity extends AppCompatActivity {
             }
         });
         // 初始化手势密码事件
-        mInitGestureUnlock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GestureUnlock.getInstance().init(OtherLoginActivity.this.getApplicationContext());
-                GestureUnlock.getInstance().createGestureUnlock(OtherLoginActivity.this);
-            }
-        });
+//        mInitGestureUnlock.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                GestureUnlock.getInstance().init(OtherLoginActivity.this.getApplicationContext());
+//                GestureUnlock.getInstance().createGestureUnlock(OtherLoginActivity.this);
+//            }
+//        });
         // 验证手势密码事件
         mVerifyGestureUnlock.setOnClickListener(new View.OnClickListener() {
             @Override
