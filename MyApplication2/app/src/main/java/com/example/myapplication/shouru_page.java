@@ -56,6 +56,16 @@ public class shouru_page extends AppCompatActivity {
             }
         }));
 
+        //活动跳转到图表界面
+        TextView Text3 = (TextView) findViewById(R.id.chart_page);
+        Text3.setOnClickListener((new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(shouru_page.this, ChartActivity.class);
+                startActivity(intent);
+            }
+        }));
+
         //数据库创建
         LitePal.initialize(this);
         load_data();
