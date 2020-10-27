@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -114,8 +113,6 @@ public class OtherLoginActivity extends AppCompatActivity {
                         }, 1500);
                         mVerifyResult.setText("指纹验证通过");
                         Toast.makeText(OtherLoginActivity.this, "onSucceed", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(OtherLoginActivity.this,zhichu_page.class);
-                        startActivityForResult(intent,1);
                     }
 
                     @Override
