@@ -139,13 +139,12 @@
             android:id="@+id/reward_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/reward_view"
             android:layout_alignTop="@+id/reward_view"
-            android:hint="请输入支付类型"
+            android:layout_toRightOf="@+id/reward_view"
+            android:hint="请输入支付账户"
             android:maxLines="1"
-            android:textSize="14sp"
             android:textColor="@android:color/black"
-            />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/location_view"

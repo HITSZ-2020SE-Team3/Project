@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -61,12 +63,12 @@ public class zhichu_page extends AppCompatActivity {
 
     String mount;
     String year, month, day;
-    String sprcial, account, people, seller, remarks;
+    String special, account, people, seller, remarks;
     public void load_data(){
 
         TextView commit;
         TextView change_to_win;
-        final EditText mount_et, year_et, month_et, day_et, hour_et, sprcial_et, account_et, seller_et, remarks_et;
+        final EditText mount_et, year_et, month_et, day_et, hour_et, special_et, account_et, seller_et, remarks_et;
         //记录点击的人物
         Spinner people_sp = (Spinner) findViewById(R.id.location_choice);
         people_sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -88,7 +90,7 @@ public class zhichu_page extends AppCompatActivity {
         year_et = findViewById(R.id.year_edit);
         month_et = findViewById(R.id.month_edit);
         day_et = findViewById(R.id.day_edit);
-        sprcial_et = findViewById(R.id.volume_edit);
+        special_et = findViewById(R.id.volume_edit);
         account_et = findViewById(R.id.reward_edit);
         seller_et = findViewById(R.id.call_edit);
         remarks_et = findViewById(R.id.message_edit);
@@ -96,13 +98,14 @@ public class zhichu_page extends AppCompatActivity {
         commit = findViewById(R.id.save_the_bill);
 
         commit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 mount = mount_et.getText().toString();
                 year = year_et.getText().toString();
                 month = month_et.getText().toString();
                 day = day_et.getText().toString();
-                sprcial = sprcial_et.getText().toString();
+                special = special_et.getText().toString();
                 account = account_et.getText().toString();
                 seller = seller_et.getText().toString();
                 remarks = remarks_et.getText().toString();
@@ -124,7 +127,7 @@ public class zhichu_page extends AppCompatActivity {
                 }
                 // 2020-10-19
                 Toast.makeText(zhichu_page.this, "保存成功", Toast.LENGTH_SHORT).show();
-                DataBase db = new DataBase(0 - Integer.valueOf(mount), sprcial, account, people, seller, remarks, year_int, month_int, day_int);
+                DataBase db = new DataBase(0 - Float.valueOf(mount), special, account, people, seller, remarks, year_int, month_int, day_int);
                 db.save();
             }
         });

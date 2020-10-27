@@ -5,19 +5,19 @@ import android.widget.Spinner;
 import org.litepal.crud.LitePalSupport;
 
 public class DataBase extends LitePalSupport {
-    private int money;
-    private String sprcial;
-    private String account;
-    private String people;
-    private String seller;
-    private String remarks;
-    private int year;
-    private int month;
-    private int day;
+    private float money;      //账单数额，改为float浮点数
+    private String special; //分类
+    private String account; //账户（指各个银行卡等）
+    private String people;  //账单发起人
+    private String seller;  //商家名
+    private String remarks; //备注
+    private int year;   //年
+    private int month;  //月
+    private int day;    //日
 
-    public DataBase(int money, String sprcial, String account, String people, String seller, String remarks, int year, int month, int day) {
+    public DataBase(float money, String special, String account, String people, String seller, String remarks, int year, int month, int day) {
         this.money = money;
-        this.sprcial = sprcial;
+        this.special = special;
         this.account = account;
         this.people = people;
         this.seller = seller;
@@ -27,12 +27,12 @@ public class DataBase extends LitePalSupport {
         this.day = day;
     }
 
-    public int getMoney() {
+    public float getMoney() {
         return money;
     }
 
-    public String getSprcial() {
-        return sprcial;
+    public String getSpecial() {
+        return special;
     }
 
     public String getAccount() {
@@ -67,8 +67,8 @@ public class DataBase extends LitePalSupport {
         this.money = money;
     }
 
-    public void setSprcial(String sprcial) {
-        this.sprcial = sprcial;
+    public void setSpecial(String special) {
+        this.special = special;
     }
 
     public void setAccount(String account) {
