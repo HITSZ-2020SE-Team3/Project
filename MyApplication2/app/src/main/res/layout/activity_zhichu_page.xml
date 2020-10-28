@@ -328,6 +328,23 @@
             android:textColor="@android:color/holo_blue_light"
             android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/chart_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/save_the_bill"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="50dp"
+            android:text="图表"
+            android:gravity="center"
+            android:paddingLeft="15dip"
+            android:paddingTop="4dip"
+            android:paddingRight="15dip"
+            android:paddingBottom="4dip"
+            android:background="@drawable/text_bg"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="20sp"/>
+
     </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

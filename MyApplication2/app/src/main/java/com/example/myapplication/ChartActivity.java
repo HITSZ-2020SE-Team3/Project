@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,6 +38,17 @@ public class ChartActivity extends AppCompatActivity {
     private Double IN = 0.0, OUT = 0.0, TOTAL = 0.0;
     private Button bt_OUT, bt_IN;
     private String choice;
+    private String start_year, start_month, start_day, end_year, end_month, end_day;
+
+    private int start_year_int = 0;
+    private int start_month_int = 0;
+    private int start_day_int = 0;
+
+    private int end_year_int = 0;
+    private int end_month_int = 0;
+    private int end_day_int = 0;
+
+    private boolean time_flag = false;//判断是否需要用时间筛选，true则需要
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +60,9 @@ public class ChartActivity extends AppCompatActivity {
         Button bt_OUT = (Button) findViewById(R.id.textView_out_chart);
         Button bt_IN = (Button) findViewById(R.id.textView_in_chart);
         TextView Text_account = (TextView) findViewById(R.id.chart_choice_account);
-        TextView Text_Sprcial = (TextView) findViewById(R.id.chart_choice_sprcial);
+        TextView Text_Sprcial = (TextView) findViewById(R.id.chart_choice_special);
         TextView Text_People = (TextView) findViewById(R.id.chart_choice_people);
+        TextView Text_Seller = (TextView) findViewById(R.id.chart_choice_seller);
 
         bt_IN.setOnClickListener(new View.OnClickListener() {//收入
             @Override
@@ -94,8 +107,18 @@ public class ChartActivity extends AppCompatActivity {
             }
         }));
 
-        choose();
+        //按照商家生成图表
+        Text_Seller.setOnClickListener((new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                choice = "按照商家";
+                renewChart();
+            }
+        }));
+
+//        choose();
         renewChart();
+        renewChart_choose_by_time();
 
         //点击事件
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
@@ -119,6 +142,7 @@ public class ChartActivity extends AppCompatActivity {
 
         if (jizhangben.isEmpty()){
             PieChartUtil.getPitChart().setPieChart(pieChart, dataMap, isOUT ? "支出" : "收入", true);
+            Toast.makeText(ChartActivity.this, "当前无数据", Toast.LENGTH_SHORT).show();
         }
 
         if (choice == "按照账户") {
@@ -127,6 +151,14 @@ public class ChartActivity extends AppCompatActivity {
             renewChart_by_Special(jizhangben);
         } else if (choice == "按照成员") {
             renewChart_by_People(jizhangben);
+        } else if (choice == "按照商家"){
+            renewChart_by_Seller(jizhangben);
+        } else {//默认按照账户更新图表
+            renewChart_by_account(jizhangben);
+        }
+
+        if(dataMap.isEmpty()){
+            Toast.makeText(ChartActivity.this, "无满足当前条件的数据", Toast.LENGTH_SHORT).show();
         }
 
         PieChartUtil.getPitChart().setPieChart(pieChart, dataMap, isOUT ? "支出" : "收入", true);
@@ -147,24 +179,24 @@ public class ChartActivity extends AppCompatActivity {
             if (isOUT == false) {//收入，正
                 int i = 0;
                 for (DataBase w : jizhangben) {
-                    if (w.getMoney() > 0) {
-                        String cTmp = w.getAccount();
-
-                        if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
-                            jizhangbentemp.add(w);
-                            categoriesTmp += cTmp + " ";
-                            categories[i] = cTmp;
-                            cWeight[i] += w.getMoney();
-                            i++;
-                        } else {
-                            for (int j = 0; j < i; j++)
-                                if (categories[j].equals(cTmp)) {
-                                    cWeight[j] += w.getMoney();
-                                    continue;
-                                }
+                    if(time_select(w)){//w满足时间范围的筛选条件
+                        if (w.getMoney() > 0) {
+                            String cTmp = w.getAccount();
+                            if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
+                                jizhangbentemp.add(w);
+                                categoriesTmp += cTmp + " ";
+                                categories[i] = cTmp;
+                                cWeight[i] += w.getMoney();
+                                i++;
+                            } else {
+                                for (int j = 0; j < i; j++)
+                                    if (categories[j].equals(cTmp)) {
+                                        cWeight[j] += w.getMoney();
+                                        continue;
+                                    }
+                            }
                         }
                     }
-
                 }
                 for (int j = 0; j < i; j++) {
                     dataMap.put(categories[j], cWeight[j]);
@@ -172,24 +204,24 @@ public class ChartActivity extends AppCompatActivity {
             } else {//支出，负
                 int i = 0;
                 for (DataBase w : jizhangben) {
-                    if (w.getMoney() < 0) {
-                        String cTmp = w.getAccount();
-
-                        if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
-                            jizhangbentemp.add(w);
-                            categoriesTmp += cTmp + " ";
-                            categories[i] = cTmp;
-                            cWeight[i] -= w.getMoney();
-                            i++;
-                        } else {
-                            for (int j = 0; j < i; j++)
-                                if (categories[j].equals(cTmp)) {
-                                    cWeight[j] -= w.getMoney();
-                                    continue;
-                                }
+                    if(time_select(w)) {//w满足时间范围的筛选条件
+                        if (w.getMoney() < 0) {
+                            String cTmp = w.getAccount();
+                            if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
+                                jizhangbentemp.add(w);
+                                categoriesTmp += cTmp + " ";
+                                categories[i] = cTmp;
+                                cWeight[i] -= w.getMoney();
+                                i++;
+                            } else {
+                                for (int j = 0; j < i; j++)
+                                    if (categories[j].equals(cTmp)) {
+                                        cWeight[j] -= w.getMoney();
+                                        continue;
+                                    }
+                            }
                         }
                     }
-
                 }
                 for (int j = 0; j < i; j++) {
                     dataMap.put(categories[j], cWeight[j]);
@@ -209,24 +241,24 @@ public class ChartActivity extends AppCompatActivity {
             if (isOUT == false) {//收入，正
                 int i = 0;
                 for (DataBase w : jizhangben) {
-                    if (w.getMoney() > 0) {
-                        String cTmp = w.getSpecial();
-
-                        if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
-                            jizhangbentemp.add(w);
-                            categoriesTmp += cTmp + " ";
-                            categories[i] = cTmp;
-                            cWeight[i] += w.getMoney();
-                            i++;
-                        } else {
-                            for (int j = 0; j < i; j++)
-                                if (categories[j].equals(cTmp)) {
-                                    cWeight[j] += w.getMoney();
-                                    continue;
-                                }
+                    if(time_select(w)) {//w满足时间范围的筛选条件
+                        if (w.getMoney() > 0) {
+                            String cTmp = w.getSpecial();
+                            if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
+                                jizhangbentemp.add(w);
+                                categoriesTmp += cTmp + " ";
+                                categories[i] = cTmp;
+                                cWeight[i] += w.getMoney();
+                                i++;
+                            } else {
+                                for (int j = 0; j < i; j++)
+                                    if (categories[j].equals(cTmp)) {
+                                        cWeight[j] += w.getMoney();
+                                        continue;
+                                    }
+                            }
                         }
                     }
-
                 }
                 for (int j = 0; j < i; j++) {
                     dataMap.put(categories[j], cWeight[j]);
@@ -234,24 +266,24 @@ public class ChartActivity extends AppCompatActivity {
             } else {//支出，负
                 int i = 0;
                 for (DataBase w : jizhangben) {
-                    if (w.getMoney() < 0) {
-                        String cTmp = w.getSpecial();
-
-                        if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
-                            jizhangbentemp.add(w);
-                            categoriesTmp += cTmp + " ";
-                            categories[i] = cTmp;
-                            cWeight[i] -= w.getMoney();
-                            i++;
-                        } else {
-                            for (int j = 0; j < i; j++)
-                                if (categories[j].equals(cTmp)) {
-                                    cWeight[j] -= w.getMoney();
-                                    continue;
-                                }
+                    if(time_select(w)) {//w满足时间范围的筛选条件
+                        if (w.getMoney() < 0) {
+                            String cTmp = w.getSpecial();
+                            if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
+                                jizhangbentemp.add(w);
+                                categoriesTmp += cTmp + " ";
+                                categories[i] = cTmp;
+                                cWeight[i] -= w.getMoney();
+                                i++;
+                            } else {
+                                for (int j = 0; j < i; j++)
+                                    if (categories[j].equals(cTmp)) {
+                                        cWeight[j] -= w.getMoney();
+                                        continue;
+                                    }
+                            }
                         }
                     }
-
                 }
                 for (int j = 0; j < i; j++) {
                     dataMap.put(categories[j], cWeight[j]);
@@ -271,24 +303,24 @@ public class ChartActivity extends AppCompatActivity {
             if (isOUT == false) {//收入，正
                 int i = 0;
                 for (DataBase w : jizhangben) {
-                    if (w.getMoney() > 0) {
-                        String cTmp = w.getPeople();
-
-                        if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
-                            jizhangbentemp.add(w);
-                            categoriesTmp += cTmp + " ";
-                            categories[i] = cTmp;
-                            cWeight[i] += w.getMoney();
-                            i++;
-                        } else {
-                            for (int j = 0; j < i; j++)
-                                if (categories[j].equals(cTmp)) {
-                                    cWeight[j] += w.getMoney();
-                                    continue;
-                                }
+                    if(time_select(w)) {//w满足时间范围的筛选条件
+                        if (w.getMoney() > 0) {
+                            String cTmp = w.getPeople();
+                            if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
+                                jizhangbentemp.add(w);
+                                categoriesTmp += cTmp + " ";
+                                categories[i] = cTmp;
+                                cWeight[i] += w.getMoney();
+                                i++;
+                            } else {
+                                for (int j = 0; j < i; j++)
+                                    if (categories[j].equals(cTmp)) {
+                                        cWeight[j] += w.getMoney();
+                                        continue;
+                                    }
+                            }
                         }
                     }
-
                 }
                 for (int j = 0; j < i; j++) {
                     dataMap.put(categories[j], cWeight[j]);
@@ -296,24 +328,24 @@ public class ChartActivity extends AppCompatActivity {
             } else {//支出，负
                 int i = 0;
                 for (DataBase w : jizhangben) {
-                    if (w.getMoney() < 0) {
-                        String cTmp = w.getPeople();
-
-                        if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
-                            jizhangbentemp.add(w);
-                            categoriesTmp += cTmp + " ";
-                            categories[i] = cTmp;
-                            cWeight[i] -= w.getMoney();
-                            i++;
-                        } else {
-                            for (int j = 0; j < i; j++)
-                                if (categories[j].equals(cTmp)) {
-                                    cWeight[j] -= w.getMoney();
-                                    continue;
-                                }
+                    if(time_select(w)) {//w满足时间范围的筛选条件
+                        if (w.getMoney() < 0) {
+                            String cTmp = w.getPeople();
+                            if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
+                                jizhangbentemp.add(w);
+                                categoriesTmp += cTmp + " ";
+                                categories[i] = cTmp;
+                                cWeight[i] -= w.getMoney();
+                                i++;
+                            } else {
+                                for (int j = 0; j < i; j++)
+                                    if (categories[j].equals(cTmp)) {
+                                        cWeight[j] -= w.getMoney();
+                                        continue;
+                                    }
+                            }
                         }
                     }
-
                 }
                 for (int j = 0; j < i; j++) {
                     dataMap.put(categories[j], cWeight[j]);
@@ -322,28 +354,172 @@ public class ChartActivity extends AppCompatActivity {
         }
     }
 
-    public void choose(){
-        TextView commit;
-        TextView change_to_win;
-        final EditText mount_et, year_et, month_et, day_et, hour_et, sprcial_et, account_et, seller_et, remarks_et;
-        //记录点击的人物
-        Spinner choice_sp = (Spinner) findViewById(R.id.chart_choice);
-        choice_sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int pos, long id) {
+    //按照商家更新图表
+    public void renewChart_by_Seller(List<DataBase> jizhangben){
+        if(jizhangben != null && !jizhangben.isEmpty()) {
+            List<DataBase> jizhangbentemp = new ArrayList<>();
+            String categoriesTmp = "";
+            double[] cWeight = new double[jizhangben.size()];
+            String[] categories = new String[jizhangben.size()];
 
-                String[] locations = getResources().getStringArray(R.array.choice);
-                choice = locations[pos];
-//                renewChart();
-//                Toast.makeText(Drawer_Layout.this, "你点击的是:"+location, 2000).show();
+            if (isOUT == false) {//收入，正
+                int i = 0;
+                for (DataBase w : jizhangben) {
+                    if(time_select(w)){//w满足时间范围的筛选条件
+                        if (w.getMoney() > 0) {
+                            String cTmp = w.getSeller();
+                            if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
+                                jizhangbentemp.add(w);
+                                categoriesTmp += cTmp + " ";
+                                categories[i] = cTmp;
+                                cWeight[i] += w.getMoney();
+                                i++;
+                            } else {
+                                for (int j = 0; j < i; j++)
+                                    if (categories[j].equals(cTmp)) {
+                                        cWeight[j] += w.getMoney();
+                                        continue;
+                                    }
+                            }
+                        }
+                    }
+                }
+                for (int j = 0; j < i; j++) {
+                    dataMap.put(categories[j], cWeight[j]);
+                }
+            } else {//支出，负
+                int i = 0;
+                for (DataBase w : jizhangben) {
+                    if(time_select(w)) {//w满足时间范围的筛选条件
+                        if (w.getMoney() < 0) {
+                            String cTmp = w.getSeller();
+                            if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
+                                jizhangbentemp.add(w);
+                                categoriesTmp += cTmp + " ";
+                                categories[i] = cTmp;
+                                cWeight[i] -= w.getMoney();
+                                i++;
+                            } else {
+                                for (int j = 0; j < i; j++)
+                                    if (categories[j].equals(cTmp)) {
+                                        cWeight[j] -= w.getMoney();
+                                        continue;
+                                    }
+                            }
+                        }
+                    }
+                }
+                for (int j = 0; j < i; j++) {
+                    dataMap.put(categories[j], cWeight[j]);
+                }
             }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Another interface callback
-            }
-        });
+        }
     }
+
+
+    //时间的筛选
+    public void renewChart_choose_by_time(){
+        final EditText start_year_et, start_month_et, start_day_et, end_year_et, end_month_et, end_day_et;
+        TextView Save_time = (TextView) findViewById(R.id.save_time);
+
+        start_year_et = findViewById(R.id.start_year_edit);
+        start_month_et = findViewById(R.id.start_month_edit);
+        start_day_et = findViewById(R.id.start_day_edit);
+
+        end_year_et = findViewById(R.id.end_year_edit);
+        end_month_et = findViewById(R.id.end_month_edit);
+        end_day_et = findViewById(R.id.end_day_edit);
+
+        renewChart();
+        Save_time.setOnClickListener((new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                time_flag = false;
+
+                start_year = start_year_et.getText().toString();
+                start_month = start_month_et.getText().toString();
+                start_day = start_day_et.getText().toString();
+                end_year = end_year_et.getText().toString();
+                end_month = end_month_et.getText().toString();
+                end_day = end_day_et.getText().toString();
+
+                start_year = start_year_et.getText().toString().trim();
+                start_month = start_month_et.getText().toString().trim();
+                start_day = start_day_et.getText().toString().trim();
+                end_year = end_year_et.getText().toString().trim();
+                end_month = end_month_et.getText().toString().trim();
+                end_day = end_day_et.getText().toString().trim();
+
+                //如果所有空都填上了才会开始判断
+                if (!TextUtils.isEmpty(start_year) && !TextUtils.isEmpty(end_year) && !TextUtils.isEmpty(start_month) && !TextUtils.isEmpty(end_month) && !TextUtils.isEmpty(start_day) && !TextUtils.isEmpty(end_day)){
+                    start_year_int = Integer.valueOf(start_year);
+                    start_month_int = Integer.valueOf(start_month);
+                    start_day_int = Integer.valueOf(start_day);
+                    end_year_int = Integer.valueOf(end_year);
+                    end_month_int = Integer.valueOf(end_month);
+                    end_day_int = Integer.valueOf(end_day);
+
+                    if(start_year_int <= end_year_int){
+                        if(start_month_int <= end_month_int){
+                            if(start_day_int <= end_day_int){
+                                Toast.makeText(ChartActivity.this, "时间筛选器保存成功", Toast.LENGTH_SHORT).show();
+                                time_flag = true;//需要进行时间筛选
+                                renewChart();
+                            }else{
+                                Toast.makeText(ChartActivity.this, "日期错误", Toast.LENGTH_SHORT).show();
+                            }
+                        }else {
+                            Toast.makeText(ChartActivity.this, "月份错误", Toast.LENGTH_SHORT).show();
+                        }
+                    }else {
+                        Toast.makeText(ChartActivity.this, "年份错误", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(ChartActivity.this, "请输入完整的年月日", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }));
+    }
+
+    //判断w的数据能不能满足时间上的筛选条件，
+    public boolean time_select(DataBase w){
+        //需要判断时间范围时
+        if(time_flag){
+            if(w.getYear() >= start_year_int && w.getYear() <= end_year_int) {
+                if (w.getMonth() >= start_month_int && w.getMonth() <= end_month_int) {
+                    if (w.getDay() >= start_day_int && w.getDay() <= end_day_int) {
+                        return true;
+                    }
+                }
+            }
+        } else {
+            return true;//不需要判断时间范围时
+        }
+        return false;
+    }
+
+//    public void choose(){
+//        TextView commit;
+//        TextView change_to_win;
+//        final EditText mount_et, year_et, month_et, day_et, hour_et, sprcial_et, account_et, seller_et, remarks_et;
+//        //记录点击的人物
+//        Spinner choice_sp = (Spinner) findViewById(R.id.chart_choice);
+//        choice_sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view,
+//                                       int pos, long id) {
+//
+//                String[] locations = getResources().getStringArray(R.array.choice);
+//                choice = locations[pos];
+//                Toast.makeText(ChartActivity.this, "你点击的是:"+choice, 2000).show();
+//                renewChart();
+//            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                // Another interface callback
+//            }
+//        });
+//    }
 
 }
 

@@ -57,27 +57,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/chart_choice_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_out_chart"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="选择"
-            android:textColor="@android:color/holo_blue_light"
-            android:textSize="25sp"/>
 
-        <Spinner
-            android:id="@+id/chart_choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/chart_choice_view"
-            android:layout_alignTop="@+id/chart_choice_view"
-            android:layout_marginTop="9dp"
-            android:scrollbarSize="28dp"
-            android:entries="@array/choice"/>
 
         <TextView
             android:id="@+id/chart_choice_account"
@@ -93,7 +73,7 @@
             android:textSize="25sp"/>
 
         <TextView
-            android:id="@+id/chart_choice_sprcial"
+            android:id="@+id/chart_choice_special"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -109,13 +89,212 @@
             android:id="@+id/chart_choice_people"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_toRightOf="@+id/chart_choice_sprcial"
+            android:layout_toRightOf="@+id/chart_choice_special"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:text="成员"
             android:textColor="@android:color/holo_blue_light"
             android:textSize="25sp"/>
+
+        <TextView
+            android:id="@+id/chart_choice_seller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/chart_choice_people"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="商家"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="25sp"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/start_time_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="开始时间"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"/>
+
+            <EditText
+                android:id="@+id/start_year_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/start_time_view"
+                android:layout_alignTop="@+id/start_time_view"
+                android:hint="年份"
+                android:maxLength="4"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                />
+
+            <TextView
+                android:id="@+id/start_year_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/start_year_edit"
+                android:layout_alignTop="@+id/start_year_edit"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:text="年"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"/>
+
+            <EditText
+                android:id="@+id/start_month_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/start_year_view"
+                android:layout_alignTop="@+id/start_year_view"
+                android:hint="月份"
+                android:maxLength="2"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                />
+
+            <TextView
+                android:id="@+id/start_month_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/start_month_edit"
+                android:layout_alignTop="@+id/start_month_edit"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:text="月"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"/>
+
+            <EditText
+                android:id="@+id/start_day_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/start_month_view"
+                android:layout_alignTop="@+id/start_month_view"
+                android:hint="日"
+                android:maxLength="2"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                />
+
+            <TextView
+                android:id="@+id/start_day_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/start_day_edit"
+                android:layout_alignTop="@+id/start_day_edit"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:text="日"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"/>
+
+            <TextView
+                android:id="@+id/save_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/start_day_view"
+                android:layout_alignTop="@+id/start_day_edit"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:text="保存设置"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="25sp"/>
+
+            <TextView
+                android:id="@+id/end_time_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/start_time_view"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="结束时间"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"/>
+
+            <EditText
+                android:id="@+id/end_year_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/end_time_view"
+                android:layout_alignTop="@+id/end_time_view"
+                android:hint="年份"
+                android:maxLength="4"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                />
+
+            <TextView
+                android:id="@+id/end_year_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/end_year_edit"
+                android:layout_alignTop="@+id/end_year_edit"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:text="年"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"/>
+
+            <EditText
+                android:id="@+id/end_month_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/end_year_view"
+                android:layout_alignTop="@+id/end_year_view"
+                android:hint="月份"
+                android:maxLength="2"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                />
+
+            <TextView
+                android:id="@+id/end_month_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/end_month_edit"
+                android:layout_alignTop="@+id/end_month_edit"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:text="月"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"/>
+
+            <EditText
+                android:id="@+id/end_day_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/end_month_view"
+                android:layout_alignTop="@+id/end_month_view"
+                android:hint="日"
+                android:maxLength="2"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                />
+
+            <TextView
+                android:id="@+id/end_day_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/end_day_edit"
+                android:layout_alignTop="@+id/end_day_edit"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:text="日"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"/>
+        </RelativeLayout>
     </LinearLayout>
+
+
 </ScrollView>
