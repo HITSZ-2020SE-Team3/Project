@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,7 +36,7 @@ public class ChartActivity extends AppCompatActivity {
     private boolean isOUT = true;//点击收入或支出，true代表支出
     private Double IN = 0.0, OUT = 0.0, TOTAL = 0.0;
     private Button bt_OUT, bt_IN;
-    String choice;
+    private String choice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +47,15 @@ public class ChartActivity extends AppCompatActivity {
         pieChart=(PieChart)findViewById(R.id.pie_chart);
         Button bt_OUT = (Button) findViewById(R.id.textView_out_chart);
         Button bt_IN = (Button) findViewById(R.id.textView_in_chart);
+        TextView Text_account = (TextView) findViewById(R.id.chart_choice_account);
+        TextView Text_Sprcial = (TextView) findViewById(R.id.chart_choice_sprcial);
+        TextView Text_People = (TextView) findViewById(R.id.chart_choice_people);
 
         bt_IN.setOnClickListener(new View.OnClickListener() {//收入
             @Override
             public void onClick(View v) {
                 isOUT = false;
-                renewUI();
+                renewChart();
             }
         });
 
@@ -59,13 +63,39 @@ public class ChartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 isOUT = true;
-                renewUI();
+                renewChart();
             }
         });
 
-        choose();
-        renewUI();
+        //按照账户生成图表
+        Text_account.setOnClickListener((new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                choice = "按照账户";
+                renewChart();
+            }
+        }));
 
+        //按照分类生成图表
+        Text_Sprcial.setOnClickListener((new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                choice = "按照分类";
+                renewChart();
+            }
+        }));
+
+        //按照成员生成图表
+        Text_People.setOnClickListener((new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                choice = "按照成员";
+                renewChart();
+            }
+        }));
+
+        choose();
+        renewChart();
 
         //点击事件
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
@@ -79,42 +109,57 @@ public class ChartActivity extends AppCompatActivity {
             public void onNothingSelected() {
             }
         });
-
-
-
-
-
     }
 
 
     //更新UI
-    public void renewUI(){
+    public void renewChart(){
         List<DataBase> jizhangben = LitePal.findAll(DataBase.class);
+        dataMap=new HashMap();
 
         if (jizhangben.isEmpty()){
             PieChartUtil.getPitChart().setPieChart(pieChart, dataMap, isOUT ? "支出" : "收入", true);
         }
 
-        if(jizhangben != null && !jizhangben.isEmpty()){
-            if(isOUT == false){//收入，正
-                List<DataBase> jizhangbentemp1 = new ArrayList<>();
-                String categoriesTmp1 = "";
-                double[] cWeight1 = new double[jizhangben.size()];
-                String[] categories1 = new String[jizhangben.size()];
+        if (choice == "按照账户") {
+            renewChart_by_account(jizhangben);
+        } else if (choice == "按照分类") {
+            renewChart_by_Special(jizhangben);
+        } else if (choice == "按照成员") {
+            renewChart_by_People(jizhangben);
+        }
+
+        PieChartUtil.getPitChart().setPieChart(pieChart, dataMap, isOUT ? "支出" : "收入", true);
+
+        pieChart.notifyDataSetChanged();//图表的刷新
+        pieChart.invalidate();
+
+    }
+
+    //按照账户更新图表
+    public void renewChart_by_account(List<DataBase> jizhangben){
+        if(jizhangben != null && !jizhangben.isEmpty()) {
+            List<DataBase> jizhangbentemp = new ArrayList<>();
+            String categoriesTmp = "";
+            double[] cWeight = new double[jizhangben.size()];
+            String[] categories = new String[jizhangben.size()];
+
+            if (isOUT == false) {//收入，正
                 int i = 0;
-                for (DataBase w :jizhangben){
-                    if(w.getMoney() > 0){
-                        String cTmp1 = w.getAccount();
-                        if (!categoriesTmp1.contains(cTmp1)) {//不含有某个种类
-                            jizhangbentemp1.add(w);
-                            categoriesTmp1 += cTmp1 + " ";
-                            categories1[i] = cTmp1;
-                            cWeight1[i] += w.getMoney();
+                for (DataBase w : jizhangben) {
+                    if (w.getMoney() > 0) {
+                        String cTmp = w.getAccount();
+
+                        if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
+                            jizhangbentemp.add(w);
+                            categoriesTmp += cTmp + " ";
+                            categories[i] = cTmp;
+                            cWeight[i] += w.getMoney();
                             i++;
                         } else {
                             for (int j = 0; j < i; j++)
-                                if (categories1[j].equals(cTmp1)) {
-                                    cWeight1[j] += w.getMoney();
+                                if (categories[j].equals(cTmp)) {
+                                    cWeight[j] += w.getMoney();
                                     continue;
                                 }
                         }
@@ -122,17 +167,14 @@ public class ChartActivity extends AppCompatActivity {
 
                 }
                 for (int j = 0; j < i; j++) {
-                    dataMap.put(categories1[j], cWeight1[j]);
+                    dataMap.put(categories[j], cWeight[j]);
                 }
             } else {//支出，负
-                List<DataBase> jizhangbentemp = new ArrayList<>();
-                String categoriesTmp = "";
-                double[] cWeight = new double[jizhangben.size()];
-                String[] categories = new String[jizhangben.size()];
                 int i = 0;
-                for (DataBase w :jizhangben){
-                    if(w.getMoney() < 0){
+                for (DataBase w : jizhangben) {
+                    if (w.getMoney() < 0) {
                         String cTmp = w.getAccount();
+
                         if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
                             jizhangbentemp.add(w);
                             categoriesTmp += cTmp + " ";
@@ -150,14 +192,133 @@ public class ChartActivity extends AppCompatActivity {
 
                 }
                 for (int j = 0; j < i; j++) {
-                    dataMap.put(categories[j], cWeight[j] );
+                    dataMap.put(categories[j], cWeight[j]);
                 }
             }
+        }
+    }
 
-            PieChartUtil.getPitChart().setPieChart(pieChart, dataMap, isOUT ? "支出" : "收入", true);
+    //按照分类更新图表
+    public void renewChart_by_Special(List<DataBase> jizhangben){
+        if(jizhangben != null && !jizhangben.isEmpty()) {
+            List<DataBase> jizhangbentemp = new ArrayList<>();
+            String categoriesTmp = "";
+            double[] cWeight = new double[jizhangben.size()];
+            String[] categories = new String[jizhangben.size()];
 
-            pieChart.notifyDataSetChanged();//图表的刷新
-            pieChart.invalidate();
+            if (isOUT == false) {//收入，正
+                int i = 0;
+                for (DataBase w : jizhangben) {
+                    if (w.getMoney() > 0) {
+                        String cTmp = w.getSpecial();
+
+                        if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
+                            jizhangbentemp.add(w);
+                            categoriesTmp += cTmp + " ";
+                            categories[i] = cTmp;
+                            cWeight[i] += w.getMoney();
+                            i++;
+                        } else {
+                            for (int j = 0; j < i; j++)
+                                if (categories[j].equals(cTmp)) {
+                                    cWeight[j] += w.getMoney();
+                                    continue;
+                                }
+                        }
+                    }
+
+                }
+                for (int j = 0; j < i; j++) {
+                    dataMap.put(categories[j], cWeight[j]);
+                }
+            } else {//支出，负
+                int i = 0;
+                for (DataBase w : jizhangben) {
+                    if (w.getMoney() < 0) {
+                        String cTmp = w.getSpecial();
+
+                        if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
+                            jizhangbentemp.add(w);
+                            categoriesTmp += cTmp + " ";
+                            categories[i] = cTmp;
+                            cWeight[i] -= w.getMoney();
+                            i++;
+                        } else {
+                            for (int j = 0; j < i; j++)
+                                if (categories[j].equals(cTmp)) {
+                                    cWeight[j] -= w.getMoney();
+                                    continue;
+                                }
+                        }
+                    }
+
+                }
+                for (int j = 0; j < i; j++) {
+                    dataMap.put(categories[j], cWeight[j]);
+                }
+            }
+        }
+    }
+
+    //按照成员更新图表
+    public void renewChart_by_People(List<DataBase> jizhangben){
+        if(jizhangben != null && !jizhangben.isEmpty()) {
+            List<DataBase> jizhangbentemp = new ArrayList<>();
+            String categoriesTmp = "";
+            double[] cWeight = new double[jizhangben.size()];
+            String[] categories = new String[jizhangben.size()];
+
+            if (isOUT == false) {//收入，正
+                int i = 0;
+                for (DataBase w : jizhangben) {
+                    if (w.getMoney() > 0) {
+                        String cTmp = w.getPeople();
+
+                        if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
+                            jizhangbentemp.add(w);
+                            categoriesTmp += cTmp + " ";
+                            categories[i] = cTmp;
+                            cWeight[i] += w.getMoney();
+                            i++;
+                        } else {
+                            for (int j = 0; j < i; j++)
+                                if (categories[j].equals(cTmp)) {
+                                    cWeight[j] += w.getMoney();
+                                    continue;
+                                }
+                        }
+                    }
+
+                }
+                for (int j = 0; j < i; j++) {
+                    dataMap.put(categories[j], cWeight[j]);
+                }
+            } else {//支出，负
+                int i = 0;
+                for (DataBase w : jizhangben) {
+                    if (w.getMoney() < 0) {
+                        String cTmp = w.getPeople();
+
+                        if (!categoriesTmp.contains(cTmp)) {//不含有某个种类
+                            jizhangbentemp.add(w);
+                            categoriesTmp += cTmp + " ";
+                            categories[i] = cTmp;
+                            cWeight[i] -= w.getMoney();
+                            i++;
+                        } else {
+                            for (int j = 0; j < i; j++)
+                                if (categories[j].equals(cTmp)) {
+                                    cWeight[j] -= w.getMoney();
+                                    continue;
+                                }
+                        }
+                    }
+
+                }
+                for (int j = 0; j < i; j++) {
+                    dataMap.put(categories[j], cWeight[j]);
+                }
+            }
         }
     }
 
@@ -174,7 +335,8 @@ public class ChartActivity extends AppCompatActivity {
 
                 String[] locations = getResources().getStringArray(R.array.choice);
                 choice = locations[pos];
-                //Toast.makeText(Drawer_Layout.this, "你点击的是:"+location, 2000).show();
+//                renewChart();
+//                Toast.makeText(Drawer_Layout.this, "你点击的是:"+location, 2000).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
