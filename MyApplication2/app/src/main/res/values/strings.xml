@@ -4,4 +4,9 @@
     <string name="gesture_set_pwd">设置手势密码</string>
     <string name="gesture_set_new_pwd">设置新的手势密码</string>
 
+    <string name="nav_detail">统计</string>
+    <string name="nav_chart">图表</string>
+    <string name="nav_person">我的</string>
+    <string name="nav_add">记账</string>
+
 </resources>

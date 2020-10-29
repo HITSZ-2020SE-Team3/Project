@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -11,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -18,6 +21,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.litepal.LitePal;
 
@@ -63,6 +67,30 @@ public class ChartActivity extends AppCompatActivity {
         TextView Text_Sprcial = (TextView) findViewById(R.id.chart_choice_special);
         TextView Text_People = (TextView) findViewById(R.id.chart_choice_people);
         TextView Text_Seller = (TextView) findViewById(R.id.chart_choice_seller);
+
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+
+        //点击底部的状态栏跳转到其他活动
+        navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.navigation_detail://流水
+//                        Intent intent1 = new Intent(ChartActivity.this, zhichu_page.class);
+//                        startActivity(intent1);
+                        break;
+                    case R.id.navigation_add://新建账单
+                        Intent intent2 = new Intent(ChartActivity.this, zhichu_page.class);
+                        startActivity(intent2);
+                        break;
+                    case R.id.navigation_person://我的
+//                        Intent intent3 = new Intent(ChartActivity.this, shouru_page.class);
+//                        startActivity(intent3);
+                        break;
+                }
+                return false;
+            }
+        });
 
         bt_IN.setOnClickListener(new View.OnClickListener() {//收入
             @Override

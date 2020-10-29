@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -14,6 +16,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.litepal.LitePal;
 
@@ -56,15 +60,29 @@ public class ZhuanZhang_page extends AppCompatActivity {
             }
         }));
 
-        //活动跳转到图表界面
-        TextView Text3 = (TextView) findViewById(R.id.chart_page);
-        Text3.setOnClickListener((new View.OnClickListener(){
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+
+        //点击底部的状态栏跳转到其他活动
+        navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ZhuanZhang_page.this, ChartActivity.class);
-                startActivity(intent);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.navigation_detail://流水
+//                        Intent intent1 = new Intent(ZhuanZhang_page.this, zhichu_page.class);
+//                        startActivity(intent1);
+                        break;
+                    case R.id.navigation_chart://图表
+                        Intent intent2 = new Intent(ZhuanZhang_page.this, ChartActivity.class);
+                        startActivity(intent2);
+                        break;
+                    case R.id.navigation_person://我的
+//                        Intent intent3 = new Intent(ZhuanZhang_page.this, shouru_page.class);
+//                        startActivity(intent3);
+                        break;
+                }
+                return false;
             }
-        }));
+        });
 
         //数据库创建
         LitePal.initialize(this);

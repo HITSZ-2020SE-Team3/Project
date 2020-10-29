@@ -42,4 +42,6 @@ dependencies {
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     implementation 'org.litepal.guolindev:core:3.2.2'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'//图表
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }

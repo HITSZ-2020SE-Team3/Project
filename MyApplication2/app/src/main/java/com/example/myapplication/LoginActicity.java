@@ -210,7 +210,7 @@ public class LoginActicity extends Activity implements OnClickListener {
                     //销毁登录界面
                     //LoginActicity.this.finish();
                     //跳转到主界面，登录成功的状态传递到 MainActivity 中
-                    startActivity(new Intent(LoginActicity.this, zhichu_page.class));
+                    startActivity(new Intent(LoginActicity.this, ChartActivity.class));
                 }else if( ( spPsw != null && !TextUtils.isEmpty(spPsw) && !md5Psw.equals(spPsw) ) ){
                     Toast.makeText(LoginActicity.this, "输入的用户名和密码不一致", Toast.LENGTH_SHORT).show();
                 }else{
