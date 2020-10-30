@@ -76,8 +76,8 @@ public class shouru_page extends AppCompatActivity {
                         startActivity(intent2);
                         break;
                     case R.id.navigation_person://我的
-//                        Intent intent3 = new Intent(shouru_page.this, shouru_page.class);
-//                        startActivity(intent3);
+                        Intent intent3 = new Intent(shouru_page.this, MyActivity.class);
+                        startActivity(intent3);
                         break;
                 }
                 return false;
@@ -172,6 +172,8 @@ public class shouru_page extends AppCompatActivity {
                     Toast.makeText(shouru_page.this, "保存成功", Toast.LENGTH_SHORT).show();
                     DataBase db = new DataBase(Float.valueOf(mount), special, account, people, seller, remarks, year_int, month_int, day_int);
                     db.save();
+                    Intent intent4 = new Intent(shouru_page.this, ChartActivity.class);
+                    startActivity(intent4);
                 }
             }
         });

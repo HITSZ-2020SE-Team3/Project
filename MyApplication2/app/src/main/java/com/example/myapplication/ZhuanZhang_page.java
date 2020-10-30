@@ -76,8 +76,8 @@ public class ZhuanZhang_page extends AppCompatActivity {
                         startActivity(intent2);
                         break;
                     case R.id.navigation_person://我的
-//                        Intent intent3 = new Intent(ZhuanZhang_page.this, shouru_page.class);
-//                        startActivity(intent3);
+                        Intent intent3 = new Intent(ZhuanZhang_page.this, MyActivity.class);
+                        startActivity(intent3);
                         break;
                 }
                 return false;
@@ -171,6 +171,8 @@ public class ZhuanZhang_page extends AppCompatActivity {
                     Toast.makeText(ZhuanZhang_page.this, "保存成功", Toast.LENGTH_SHORT).show();
                     DataBase db = new DataBase(0 - Float.valueOf(mount), special, account, people, seller, remarks, year_int, month_int, day_int);
                     db.save();
+                    Intent intent4 = new Intent(ZhuanZhang_page.this, ChartActivity.class);
+                    startActivity(intent4);
                 }
             }
         });

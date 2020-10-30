@@ -58,7 +58,7 @@ public class MyActivity extends AppCompatActivity {
 
         mData = new LinkedList<My>();
         mData.add(new My("导入", "导入数据", R.drawable.ic_import_blue_32dp));
-        mData.add(new My("导出", "导出数据", R.drawable.ic_export_blue_32dp));
+        mData.add(new My("导出", "导出数据", R.drawable.ic_export2_blue_32dp));
         mData.add(new My("建议", "建议与反馈", R.drawable.ic_advice_blue_32dp));
         mData.add(new My("版本", "版本许可信息", R.drawable.ic_version_blue_32dp));
         mData.add(new My("关于", "开发者信息", R.drawable.ic_member_blue_32dp));
