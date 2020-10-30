@@ -25,11 +25,27 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@drawable/background_main"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="图表"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"/>
+
+            </androidx.appcompat.widget.Toolbar>
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pie_chart"
@@ -39,7 +55,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="100dp"
                 android:layout_margin="10dp">
 
                 <Button
@@ -48,18 +64,59 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:text="支出"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/chart_choice_account"
                     app:layout_constraintEnd_toStartOf="@+id/guideline6"
-                    app:layout_constraintHorizontal_bias="0.7"
+                    app:layout_constraintHorizontal_bias="0.6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/chart_choice_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:text="账户"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="25sp"
+                    android:paddingLeft="10dip"
+                    android:paddingTop="2dip"
+                    android:paddingRight="10dip"
+                    android:paddingBottom="2dip"
+                    android:background="@drawable/text_bg1"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_out_chart"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                    app:layout_constraintHorizontal_bias="0.2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/chart_choice_special"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:text="分类"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="25sp"
+                    android:paddingLeft="10dip"
+                    android:paddingTop="2dip"
+                    android:paddingRight="10dip"
+                    android:paddingBottom="2dip"
+                    android:background="@drawable/text_bg1"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                    app:layout_constraintHorizontal_bias="0.92"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_out_chart"/>
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.5" />
+                    app:layout_constraintGuide_begin="196dp" />
 
                 <Button
                     android:id="@+id/textView_in_chart"
@@ -67,16 +124,52 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:text="收入"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/chart_choice_people"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.3"
+                    app:layout_constraintHorizontal_bias="0.4"
                     app:layout_constraintStart_toStartOf="@+id/guideline6"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/chart_choice_people"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:text="成员"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="25sp"
+                    android:paddingLeft="10dip"
+                    android:paddingTop="2dip"
+                    android:paddingRight="10dip"
+                    android:paddingBottom="2dip"
+                    android:background="@drawable/text_bg1"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.08"
+                    app:layout_constraintStart_toStartOf="@+id/guideline6"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_in_chart" />
+
+                <TextView
+                    android:id="@+id/chart_choice_seller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:text="商家"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="25sp"
+                    android:paddingLeft="10dip"
+                    android:paddingTop="2dip"
+                    android:paddingRight="10dip"
+                    android:paddingBottom="2dip"
+                    android:background="@drawable/text_bg1"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.8"
+                    app:layout_constraintStart_toStartOf="@+id/guideline6"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_in_chart" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -84,59 +177,11 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/chart_choice_account"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="70dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:text="账户"
-                    android:textColor="@android:color/holo_blue_light"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:id="@+id/chart_choice_special"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_toRightOf="@+id/chart_choice_account"
-                    android:text="分类"
-                    android:textColor="@android:color/holo_blue_light"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:id="@+id/chart_choice_people"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_toRightOf="@+id/chart_choice_special"
-                    android:text="成员"
-                    android:textColor="@android:color/holo_blue_light"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:id="@+id/chart_choice_seller"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_toRightOf="@+id/chart_choice_people"
-                    android:text="商家"
-                    android:textColor="@android:color/holo_blue_light"
-                    android:textSize="25sp" />
-
-                <TextView
                     android:id="@+id/start_time_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/chart_choice_account"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="35dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
                     android:text="开始时间"
                     android:textColor="@android:color/black"
@@ -216,12 +261,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/start_day_edit"
+                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="10dp"
                     android:layout_toRightOf="@+id/start_day_view"
-                    android:text="保存设置"
+                    android:text="确定"
                     android:textColor="@android:color/holo_blue_light"
-                    android:textSize="25sp" />
+                    android:textSize="20sp"
+                    android:paddingLeft="10dip"
+                    android:paddingTop="2dip"
+                    android:paddingRight="10dip"
+                    android:paddingBottom="2dip"
+                    android:background="@drawable/text_bg1" />
 
                 <TextView
                     android:id="@+id/end_time_view"
@@ -304,13 +355,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="25sp" />
 
-
             </RelativeLayout>
-
-
         </LinearLayout>
-
-
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
