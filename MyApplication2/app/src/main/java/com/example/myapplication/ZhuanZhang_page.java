@@ -131,9 +131,6 @@ public class ZhuanZhang_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mount = mount_et.getText().toString();
-                year = year_et.getText().toString();
-                month = month_et.getText().toString();
-                day = day_et.getText().toString();
                 special = special_et.getText().toString();
                 account = account_et.getText().toString();
                 seller = seller_et.getText().toString();
@@ -141,23 +138,40 @@ public class ZhuanZhang_page extends AppCompatActivity {
                 year = year_et.getText().toString().trim();
                 month = month_et.getText().toString().trim();
                 day = day_et.getText().toString().trim();
-                int year_int = 0;
-                int month_int = 0;
-                int day_int = 0;
-                if (TextUtils.isEmpty(year)) {
-                    LocalDate date = LocalDate.now();
-                    year_int = date.getYear();
-                    month_int = date.getMonthValue();
-                    day_int = date.getDayOfMonth();
+                if (TextUtils.isEmpty(mount)) {
+                    Toast.makeText(ZhuanZhang_page.this, "请输入金额", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (TextUtils.isEmpty(special)) {
+                    Toast.makeText(ZhuanZhang_page.this, "请输入种类", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (TextUtils.isEmpty(account)) {
+                    Toast.makeText(ZhuanZhang_page.this, "请输入账户", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (TextUtils.isEmpty(seller)) {
+                    Toast.makeText(ZhuanZhang_page.this, "请输入商家", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (TextUtils.isEmpty(remarks)) {
+                    Toast.makeText(ZhuanZhang_page.this, "请输入备注", Toast.LENGTH_SHORT).show();
+                    return;
                 } else {
-                    year_int = Integer.valueOf(year);
-                    month_int = Integer.valueOf(month);
-                    day_int = Integer.valueOf(day);
+                    int year_int = 0;
+                    int month_int = 0;
+                    int day_int = 0;
+                    if (TextUtils.isEmpty(year) || TextUtils.isEmpty(month) || TextUtils.isEmpty(day)) {
+                        LocalDate date = LocalDate.now();
+                        year_int = date.getYear();
+                        month_int = date.getMonthValue();
+                        day_int = date.getDayOfMonth();
+                    } else {
+                        year_int = Integer.valueOf(year);
+                        month_int = Integer.valueOf(month);
+                        day_int = Integer.valueOf(day);
+                    }
+                    // 2020-10-19
+                    Toast.makeText(ZhuanZhang_page.this, "保存成功", Toast.LENGTH_SHORT).show();
+                    DataBase db = new DataBase(0 - Float.valueOf(mount), special, account, people, seller, remarks, year_int, month_int, day_int);
+                    db.save();
                 }
-                // 2020-10-19
-                Toast.makeText(ZhuanZhang_page.this, "保存成功", Toast.LENGTH_SHORT).show();
-                DataBase db = new DataBase(0 - Float.valueOf(mount), special, account, people, seller, remarks, year_int, month_int, day_int);
-                db.save();
             }
         });
     }
