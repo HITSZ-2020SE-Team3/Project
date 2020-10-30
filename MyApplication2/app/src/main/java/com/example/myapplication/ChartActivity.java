@@ -84,8 +84,8 @@ public class ChartActivity extends AppCompatActivity {
                         startActivity(intent2);
                         break;
                     case R.id.navigation_person://我的
-//                        Intent intent3 = new Intent(ChartActivity.this, shouru_page.class);
-//                        startActivity(intent3);
+                        Intent intent3 = new Intent(ChartActivity.this, MyActivity.class);
+                        startActivity(intent3);
                         break;
                 }
                 return false;
