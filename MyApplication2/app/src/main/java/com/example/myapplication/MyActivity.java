@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,6 +32,17 @@ public class MyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+
+        //退出登录
+        Button bt_logout = (Button) findViewById(R.id.button_logout);
+        bt_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent6 = new Intent(MyActivity.this, MainActivity.class);
+                startActivity(intent6);
+            }
+        });
+
 
         //点击底部的状态栏跳转到其他活动
         BottomNavigationView navView = findViewById(R.id.nav_view);

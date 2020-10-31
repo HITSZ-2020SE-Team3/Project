@@ -103,7 +103,8 @@ public class ChartActivity extends AppCompatActivity {
             }
         });
 
-        bt_IN.setOnClickListener(new View.OnClickListener() {//收入
+        //收入
+        bt_IN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isOUT = false;
@@ -111,7 +112,8 @@ public class ChartActivity extends AppCompatActivity {
             }
         });
 
-        bt_OUT.setOnClickListener(new View.OnClickListener() {//支出
+        //支出
+        bt_OUT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isOUT = true;
