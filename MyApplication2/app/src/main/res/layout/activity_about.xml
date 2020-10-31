@@ -26,7 +26,7 @@
         android:layout_below="@+id/toolbar"
         android:textColor="#ffffff"
         android:layout_marginTop="30dp"
-        android:background="@drawable/ic_money_red_128dp"/>
+        android:background="@drawable/ic_zhangben_128dp"/>
 
     <TextView
         android:id="@+id/app_name"
