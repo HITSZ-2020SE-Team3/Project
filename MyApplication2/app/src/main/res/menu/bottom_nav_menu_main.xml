@@ -6,10 +6,22 @@
         android:id="@+id/navigation_detail"
         android:icon="@drawable/ic_tongji_black_24dp"
         android:title="@string/nav_detail" />
+
+    <item
+        android:id="@+id/navigation_liushui"
+        android:icon="@drawable/ic_liushui_black_24dp"
+        android:title="@string/nav_liushui" />
+
     <item
         android:id="@+id/navigation_add"
         android:icon="@drawable/ic_add_black_24dp"
         android:title="@string/nav_add" />
+
+    <item
+        android:id="@+id/navigation_chart"
+        android:icon="@drawable/ic_insert_chart_black_24dp"
+        android:title="@string/nav_chart" />
+
     <item
         android:id="@+id/navigation_person"
         android:icon="@drawable/ic_person_black_24dp"

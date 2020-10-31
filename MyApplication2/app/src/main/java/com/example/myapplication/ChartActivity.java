@@ -31,6 +31,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.google.android.material.bottomnavigation.LabelVisibilityMode.LABEL_VISIBILITY_LABELED;
+
 
 public class ChartActivity extends AppCompatActivity {
 
@@ -68,24 +70,33 @@ public class ChartActivity extends AppCompatActivity {
         TextView Text_People = (TextView) findViewById(R.id.chart_choice_people);
         TextView Text_Seller = (TextView) findViewById(R.id.chart_choice_seller);
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
 
         //点击底部的状态栏跳转到其他活动
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setLabelVisibilityMode(LABEL_VISIBILITY_LABELED);
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.navigation_detail://流水
+                    case R.id.navigation_detail://统计
 //                        Intent intent1 = new Intent(ChartActivity.this, zhichu_page.class);
 //                        startActivity(intent1);
                         break;
-                    case R.id.navigation_add://新建账单
-                        Intent intent2 = new Intent(ChartActivity.this, zhichu_page.class);
-                        startActivity(intent2);
+                    case R.id.navigation_liushui://流水
+//                        Intent intent2 = new Intent(MyActivity.this, ChartActivity.class);
+//                        startActivity(intent2);
+                        break;
+                    case R.id.navigation_add://记账
+                        Intent intent3 = new Intent(ChartActivity.this, zhichu_page.class);
+                        startActivity(intent3);
+                        break;
+                    case R.id.navigation_chart://图表
+                        Intent intent4 = new Intent(ChartActivity.this, ChartActivity.class);
+                        startActivity(intent4);
                         break;
                     case R.id.navigation_person://我的
-                        Intent intent3 = new Intent(ChartActivity.this, MyActivity.class);
-                        startActivity(intent3);
+                        Intent intent5 = new Intent(ChartActivity.this, MyActivity.class);
+                        startActivity(intent5);
                         break;
                 }
                 return false;

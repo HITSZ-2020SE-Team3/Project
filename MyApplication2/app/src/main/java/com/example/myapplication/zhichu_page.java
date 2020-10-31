@@ -23,6 +23,8 @@ import org.litepal.LitePal;
 
 import java.time.LocalDate;
 
+import static com.google.android.material.bottomnavigation.LabelVisibilityMode.LABEL_VISIBILITY_LABELED;
+
 public class zhichu_page extends AppCompatActivity {
 
     @Override
@@ -60,24 +62,32 @@ public class zhichu_page extends AppCompatActivity {
             }
         }));
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-
         //点击底部的状态栏跳转到其他活动
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setLabelVisibilityMode(LABEL_VISIBILITY_LABELED);
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.navigation_detail://流水
-//                        Intent intent1 = new Intent(zhichu_page.this, zhichu_page.class);
+                    case R.id.navigation_detail://统计
+//                        Intent intent1 = new Intent(ChartActivity.this, zhichu_page.class);
 //                        startActivity(intent1);
                         break;
+                    case R.id.navigation_liushui://流水
+//                        Intent intent2 = new Intent(MyActivity.this, ChartActivity.class);
+//                        startActivity(intent2);
+                        break;
+                    case R.id.navigation_add://记账
+                        Intent intent3 = new Intent(zhichu_page.this, zhichu_page.class);
+                        startActivity(intent3);
+                        break;
                     case R.id.navigation_chart://图表
-                        Intent intent2 = new Intent(zhichu_page.this, ChartActivity.class);
-                        startActivity(intent2);
+                        Intent intent4 = new Intent(zhichu_page.this, ChartActivity.class);
+                        startActivity(intent4);
                         break;
                     case R.id.navigation_person://我的
-                        Intent intent3 = new Intent(zhichu_page.this, MyActivity.class);
-                        startActivity(intent3);
+                        Intent intent5 = new Intent(zhichu_page.this, MyActivity.class);
+                        startActivity(intent5);
                         break;
                 }
                 return false;

@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_nav_menu_addbill" />
+        app:menu="@menu/bottom_nav_menu_main" />
 
     <androidx.drawerlayout.widget.DrawerLayout
         xmlns:andriod="http://schemas.android.com/tools"
