@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--这是用于流水展示的单条记录的xml文件-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!--这里按照顺序存储，展示年，月，数额，类别，账户这几项作为流水-->
+    <TextView
+        android:id="@+id/year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="20sp" />  <!--这里显示年的数据+“年”字-->
+
+    <TextView
+        android:id="@+id/year_character"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/year"
+        android:text="年"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/year_character"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="20sp" />  <!--月份-->
+
+    <TextView
+        android:id="@+id/month_character"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/month"
+        android:text="月"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="20sp" />  <!--“月”字-->
+
+    <TextView
+        android:id="@+id/day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/month_character"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="20sp" />  <!--日-->
+
+    <TextView
+        android:id="@+id/day_character"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/day"
+        android:text="日"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="20sp" />  <!--“日”字-->
+
+    <TextView
+        android:id="@+id/money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/day_character"
+        android:layout_toEndOf="@+id/special_data"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="30sp"/>   <!--账单数额，需要注明是收入/支出-->
+
+    <TextView
+        android:id="@+id/special"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/year"
+        android:textColor="@android:color/holo_blue_light"
+        android:text="类别"
+        android:textSize="15sp"/>   <!--账单类别标识-->
+
+    <TextView
+        android:id="@+id/special_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/special"
+        android:layout_below="@+id/year_character"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="20sp"/>   <!--账单类别的值-->
+
+    <TextView
+        android:id="@+id/account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/special"
+        android:text="账户"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="15sp" />  <!--账单所属账户标识-->
+
+    <TextView
+        android:id="@+id/account_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/account"
+        android:layout_below="@+id/special_data"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="20sp" />  <!--账单所属账户的值-->
+
+</RelativeLayout>
