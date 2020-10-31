@@ -22,19 +22,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_init_fingerprint"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:textColor="#ffffff"
-        android:background="@drawable/background_main"
-        android:text="指纹认证初始化"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_auth_result" />
+<!--    <Button-->
+<!--        android:id="@+id/btn_init_fingerprint"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:textColor="#ffffff"-->
+<!--        android:background="@drawable/background_main"-->
+<!--        android:text="指纹认证初始化"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tv_auth_result" />-->
 
     <Button
         android:id="@+id/btn_fingerprint"
@@ -45,7 +45,7 @@
         android:layout_marginTop="24dp"
         android:textColor="#ffffff"
         android:background="@drawable/background_main"
-        android:text="验证指纹"
+        android:text="指纹密码登录"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_init_fingerprint" />
@@ -100,7 +100,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/background_main"
-        android:text="验证手势密码"
+        android:text="手势密码登录"
         android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

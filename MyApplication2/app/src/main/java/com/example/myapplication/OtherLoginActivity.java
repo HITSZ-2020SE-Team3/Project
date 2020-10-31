@@ -17,7 +17,7 @@ import com.dds.fingerprintidentify.base.BaseFingerprint;
 
 public class OtherLoginActivity extends AppCompatActivity {
     private static final String TAG = "OtherLoginActivity";
-    private Button mInitFingerPrint;
+    //private Button mInitFingerPrint;
     private Button mStartFingerPrint;
     private TextView mVerifyResult;
     private FingerprintIdentify mFingerprintIdentify;
@@ -61,7 +61,7 @@ public class OtherLoginActivity extends AppCompatActivity {
      * 初始化View
      */
     private void initView() {
-        mInitFingerPrint = findViewById(R.id.btn_init_fingerprint);
+        //mInitFingerPrint = findViewById(R.id.btn_init_fingerprint);
         mStartFingerPrint = findViewById(R.id.btn_fingerprint);
         mVerifyResult = findViewById(R.id.tv_auth_result);
         //mInitGestureUnlock = findViewById(R.id.btn_init_gesture_unlock);
@@ -74,14 +74,14 @@ public class OtherLoginActivity extends AppCompatActivity {
      */
     private void initClickListener() {
         //指纹初始化
-        mInitFingerPrint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "mInitFingerPrint onClick");
-                initFingerPrint();
-            }
-        });
-
+//        mInitFingerPrint.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.i(TAG, "mInitFingerPrint onClick");
+//                initFingerPrint();
+//            }
+//        });
+        initFingerPrint();
         //启动指纹认证
         mStartFingerPrint.setOnClickListener(new View.OnClickListener() {
             @Override
