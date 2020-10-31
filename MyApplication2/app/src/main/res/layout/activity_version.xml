@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/background_main"
+        android:gravity="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:navigationIcon="@drawable/ic_return_white_32dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="版本">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/app_name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="5dp"
+        android:text="记账宝"
+        android:textSize="25sp"
+        android:textColor="#2c2c2c"/>
+
+    <ImageView
+        android:id="@+id/jizhangbao2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/app_name2"
+        android:textColor="#ffffff"
+        android:background="@drawable/ic_zhangben_128dp"/>
+
+    <TextView
+        android:id="@+id/app_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/app_name2"
+        android:layout_marginTop="5dp"
+        android:text="版本号：2.1.0"
+        android:textSize="15sp"
+        android:textColor="#2c2c2c"/>
+
+    <TextView
+        android:id="@+id/app_website"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/app_copyright"
+        android:layout_marginBottom="5dp"
+        android:text="项目网站：github.com/HITSZ-2020SE-Team3/Project"
+        android:textSize="13sp"
+        android:textColor="#2c2c2c"/>
+
+    <TextView
+        android:id="@+id/app_copyright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="55dp"
+        android:text="Copyright © 2020 HITSZSEGroup3 All Rights Reserved"
+        android:textSize="14sp"
+        android:textColor="#2c2c2c"/>
+
+</RelativeLayout>

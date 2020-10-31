@@ -14,7 +14,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:navigationIcon="@drawable/ic_return_white_32dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="返回">
+        app:title="关于">
 
     </androidx.appcompat.widget.Toolbar>
 
