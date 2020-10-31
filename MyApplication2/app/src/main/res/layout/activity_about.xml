@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/background_main"
+        android:gravity="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:navigationIcon="@drawable/ic_return_white_32dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="返回">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/jizhangbao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/toolbar"
+        android:textColor="#ffffff"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/ic_money_red_128dp"/>
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/jizhangbao"
+        android:layout_marginTop="5dp"
+        android:text="记账宝"
+        android:textSize="20sp"
+        android:textColor="#2c2c2c"/>
+
+    <TextView
+        android:id="@+id/app_developer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_name"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="45dp"
+        android:text="团队成员"
+        android:textSize="25sp"
+        android:textColor="#1b82d2"/>
+
+    <RelativeLayout
+        android:id="@+id/xwx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_developer"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="30dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/xwx_picture"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/xwx"
+            app:riv_border_color="#1b82d2"
+            app:riv_border_width="2dp"
+            app:riv_oval="true" />
+
+        <TextView
+            android:id="@+id/xwx_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/xwx_picture"
+            android:layout_marginTop="16dp"
+            android:text="谢玮勋"
+            android:textSize="20sp"
+            android:textColor="#2c2c2c"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/wwx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/xwx"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/wwx_picture"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/wwx"
+            app:riv_border_color="#1b82d2"
+            app:riv_border_width="2dp"
+            app:riv_oval="true" />
+
+        <TextView
+            android:id="@+id/wwx_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/wwx_picture"
+            android:layout_marginTop="16dp"
+            android:text="吴文熙"
+            android:textSize="20sp"
+            android:textColor="#2c2c2c"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/hh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wwx"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/hh_picture"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/hh"
+            app:riv_border_color="#1b82d2"
+            app:riv_border_width="2dp"
+            app:riv_oval="true" />
+
+        <TextView
+            android:id="@+id/hh_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/hh_picture"
+            android:layout_marginTop="16dp"
+            android:text="黄煌"
+            android:textSize="20sp"
+            android:textColor="#2c2c2c"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/lhm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hh"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/lhm_picture"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/lhm"
+            app:riv_border_color="#1b82d2"
+            app:riv_border_width="2dp"
+            app:riv_oval="true" />
+
+        <TextView
+            android:id="@+id/lhm_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/lhm_picture"
+            android:layout_marginTop="16dp"
+            android:text="梁洪铭"
+            android:textSize="20sp"
+            android:textColor="#2c2c2c"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/hxy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lhm"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/hxy_picture"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/hxy"
+            app:riv_border_color="#1b82d2"
+            app:riv_border_width="2dp"
+            app:riv_oval="true" />
+
+        <TextView
+            android:id="@+id/hxy_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/hxy_picture"
+            android:layout_marginTop="16dp"
+            android:text="何欣宇"
+            android:textSize="20sp"
+            android:textColor="#2c2c2c"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
+

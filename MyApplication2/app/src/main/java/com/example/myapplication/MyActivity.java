@@ -84,8 +84,12 @@ public class MyActivity extends AppCompatActivity {
                         Toast.makeText(MyActivity.this, "欢迎联系开发人员提交您的建议与反馈", Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
+//                        Intent intent1 = new Intent(MyActivity.this, zhichu_page.class);
+//                        startActivity(intent1);
                         break;
                     case 4:
+                        Intent intent2 = new Intent(MyActivity.this, AboutActivity.class);
+                        startActivity(intent2);
                         break;
                 }
 
