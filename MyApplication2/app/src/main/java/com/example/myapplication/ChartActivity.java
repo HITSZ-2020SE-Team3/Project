@@ -537,28 +537,5 @@ public class ChartActivity extends AppCompatActivity {
         return false;
     }
 
-//    public void choose(){
-//        TextView commit;
-//        TextView change_to_win;
-//        final EditText mount_et, year_et, month_et, day_et, hour_et, sprcial_et, account_et, seller_et, remarks_et;
-//        //记录点击的人物
-//        Spinner choice_sp = (Spinner) findViewById(R.id.chart_choice);
-//        choice_sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view,
-//                                       int pos, long id) {
-//
-//                String[] locations = getResources().getStringArray(R.array.choice);
-//                choice = locations[pos];
-//                Toast.makeText(ChartActivity.this, "你点击的是:"+choice, 2000).show();
-//                renewChart();
-//            }
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                // Another interface callback
-//            }
-//        });
-//    }
-
 }
 
