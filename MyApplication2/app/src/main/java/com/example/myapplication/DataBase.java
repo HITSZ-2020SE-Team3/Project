@@ -14,8 +14,9 @@ public class DataBase extends LitePalSupport {
     private int year;   //年
     private int month;  //月
     private int day;    //日
+    private int date;   //日期的整数形式
 
-    public DataBase(float money, String special, String account, String people, String seller, String remarks, int year, int month, int day) {
+    public DataBase(float money, String special, String account, String people, String seller, String remarks, int year, int month, int day, int date) {
         this.money = money;
         this.special = special;
         this.account = account;
@@ -25,6 +26,7 @@ public class DataBase extends LitePalSupport {
         this.year = year;
         this.month = month;
         this.day = day;
+        this.date = date;
     }
 
     public float getMoney() {
@@ -63,6 +65,10 @@ public class DataBase extends LitePalSupport {
         return day;
     }
 
+    public int getDate() {
+        return date;
+    }
+
     public void setMoney(int money) {
         this.money = money;
     }
@@ -97,5 +103,9 @@ public class DataBase extends LitePalSupport {
 
     public void setDay(int day) {
         this.day = day;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
     }
 }

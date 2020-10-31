@@ -83,8 +83,8 @@ public class ChartActivity extends AppCompatActivity {
 //                        startActivity(intent1);
                         break;
                     case R.id.navigation_liushui://流水
-//                        Intent intent2 = new Intent(MyActivity.this, ChartActivity.class);
-//                        startActivity(intent2);
+                        Intent intent2 = new Intent(ChartActivity.this, turnoverActivity.class);
+                        startActivity(intent2);
                         break;
                     case R.id.navigation_add://记账
                         Intent intent3 = new Intent(ChartActivity.this, zhichu_page.class);

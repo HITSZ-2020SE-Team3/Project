@@ -74,8 +74,8 @@ public class ZhuanZhang_page extends AppCompatActivity {
 //                        startActivity(intent1);
                         break;
                     case R.id.navigation_liushui://流水
-//                        Intent intent2 = new Intent(MyActivity.this, ChartActivity.class);
-//                        startActivity(intent2);
+                        Intent intent2 = new Intent(ZhuanZhang_page.this, turnoverActivity.class);
+                        startActivity(intent2);
                         break;
                     case R.id.navigation_add://记账
                         Intent intent3 = new Intent(ZhuanZhang_page.this, ZhuanZhang_page.class);
@@ -167,6 +167,7 @@ public class ZhuanZhang_page extends AppCompatActivity {
                     int year_int = 0;
                     int month_int = 0;
                     int day_int = 0;
+                    int date_int = 0;
                     if (TextUtils.isEmpty(year) || TextUtils.isEmpty(month) || TextUtils.isEmpty(day)) {
                         LocalDate date = LocalDate.now();
                         year_int = date.getYear();
@@ -177,9 +178,10 @@ public class ZhuanZhang_page extends AppCompatActivity {
                         month_int = Integer.valueOf(month);
                         day_int = Integer.valueOf(day);
                     }
+                    date_int = statistic.dateChange(year_int, month_int, day_int);
                     // 2020-10-19
                     Toast.makeText(ZhuanZhang_page.this, "保存成功", Toast.LENGTH_SHORT).show();
-                    DataBase db = new DataBase(0 - Float.valueOf(mount), special, account, people, seller, remarks, year_int, month_int, day_int);
+                    DataBase db = new DataBase(0 - Float.valueOf(mount), special, account, people, seller, remarks, year_int, month_int, day_int, date_int);
                     db.save();
                     Intent intent4 = new Intent(ZhuanZhang_page.this, ChartActivity.class);
                     startActivity(intent4);

@@ -70,12 +70,12 @@ public class zhichu_page extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.navigation_detail://统计
-//                        Intent intent1 = new Intent(ChartActivity.this, zhichu_page.class);
-//                        startActivity(intent1);
+                        Intent intent1 = new Intent(zhichu_page.this, statisticActivity.class);
+                        startActivity(intent1);
                         break;
                     case R.id.navigation_liushui://流水
-//                        Intent intent2 = new Intent(MyActivity.this, ChartActivity.class);
-//                        startActivity(intent2);
+                        Intent intent2 = new Intent(zhichu_page.this, turnoverActivity.class);
+                        startActivity(intent2);
                         break;
                     case R.id.navigation_add://记账
                         Intent intent3 = new Intent(zhichu_page.this, zhichu_page.class);
@@ -166,7 +166,8 @@ public class zhichu_page extends AppCompatActivity {
                     int year_int = 0;
                     int month_int = 0;
                     int day_int = 0;
-                    if (TextUtils.isEmpty(year) || TextUtils.isEmpty(month) || TextUtils.isEmpty(day)) {
+                    int date_int = 0;
+                    if (TextUtils.isEmpty(year) || TextUtils.isEmpty(month) || TextUtils.isEmpty(day)) {    //有一项是空的，就自动填充当前时间
                         LocalDate date = LocalDate.now();
                         year_int = date.getYear();
                         month_int = date.getMonthValue();
@@ -176,9 +177,10 @@ public class zhichu_page extends AppCompatActivity {
                         month_int = Integer.valueOf(month);
                         day_int = Integer.valueOf(day);
                     }
+                    date_int = statistic.dateChange(year_int, month_int, day_int);
                     // 2020-10-19
                     Toast.makeText(zhichu_page.this, "保存成功", Toast.LENGTH_SHORT).show();
-                    DataBase db = new DataBase(0 - Float.valueOf(mount), special, account, people, seller, remarks, year_int, month_int, day_int);
+                    DataBase db = new DataBase(0 - Float.valueOf(mount), special, account, people, seller, remarks, year_int, month_int, day_int, date_int);
                     db.save();
                     Intent intent4 = new Intent(zhichu_page.this, ChartActivity.class);
                     startActivity(intent4);

@@ -3,7 +3,7 @@
 
     <dbname value="db" />
 
-    <version value="2" />
+    <version value="5" />
 
     <list>
         <mapping class ="com.example.myapplication.DataBase"></mapping>

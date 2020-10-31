@@ -16,14 +16,14 @@ import java.util.List;
 public class statistic {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static List<String> getAllAccount(String account){
-        List<DataBase> result = LitePal.select("?",account).find(DataBase.class);
+    public static List<String> getAllAccount(){
+        List<DataBase> result = LitePal.select("account").find(DataBase.class);
         List<String> final_result = new ArrayList<>();
         for(DataBase data:result){
             String temp = data.getAccount();
-            final_result.add(temp);
+            if(!final_result.contains(temp))    final_result.add(temp); //不存在的元素才添加，从而达到去重的效果
         }//取出所有账户的字符串
-        return (List<String>) final_result.stream().distinct(); //去重
+        return final_result; //去重
     }//取出所有的账户（去重后放入一个列表中），前端应显示这些账户的余额
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -49,7 +49,7 @@ public class statistic {
     }//取出所有的日期（包括年、月、日，区分它们的不同在于输入的日期种类）
     //似乎不需要这么麻烦吗？不行，至少得筛选出年份
 
-    public static List<DataBase> getOneAccount(String account){
+    public static List<DataBase> getOneAccountBill(String account){
         return LitePal.where("account = ?",account).find(DataBase.class);
     }//取出单个账户的所有数据，传入账户名
 
@@ -75,7 +75,7 @@ public class statistic {
     //同理，这个函数也可以向下内推，得到一年中每个月/每天的账单二维数组
     //现在的思路不用这么麻烦，直接总体上进行筛选
 
-    public static List<Float> getBalanceInAPeriodOfTime(List<DataBase> data){
+    public static List<Float> getRemainInAPeriodOfTime(List<DataBase> data){
         List<Float> balance = new ArrayList<>(2);   //0位装收入，1位装支出
         balance.set(0,(float)0);
         balance.set(1,(float)0);    //初始化赋值为0
@@ -85,11 +85,30 @@ public class statistic {
             else balance.set(1, balance.get(1) + temp.getMoney());   //反之，则放在1位（支出）累加
         }
         return balance;
-    }//考虑求和计算一段时间的余额值（如单个月，整年）
+    }//考虑求和计算一段时间的收入、支出值（如单个月，整年）
+
+    public static float getOneAccountRemain(String account){
+        List<DataBase> anAccountBill = statistic.getOneAccountBill(account);
+        float result = 0;
+        for(DataBase temp:anAccountBill){
+            result += temp.getMoney();
+        }//遍历单个账户的所有账单，取出数据相加
+        return result;
+    }//求出单个账户的余额值
+
+    public static float getAllAccountRemain(){
+        float result = LitePal.sum("database","money",float.class);
+        return result;
+    }//求出整个账户的余额值
 
     public static int dateChange(int year, int month, int day){
         int result;
-        String temp = String.valueOf(year) + String.valueOf(month) + String.valueOf(day);   //换字符串形式拼接起来
+        String tempMonth,tempDay,temp;
+        if(month < 10) tempMonth = "0" + String.valueOf(month);//如果月份数小于10，需要补0才能正确存储！日期同理
+        else    tempMonth = String.valueOf(month);
+        if(day < 10)   tempDay = "0" + String.valueOf(day);
+        else    tempDay =String.valueOf(day);
+        temp = String.valueOf(year) + tempMonth + tempDay;   //换字符串形式拼接起来
         result = Integer.parseInt(temp);    //再切换成数字形式
         return result;
     }   //更改日期存储格式为一个整数，方便排序
@@ -110,6 +129,5 @@ public class statistic {
         Cursor c = LitePal.findBySQL("SELECT * FROM DATABASE WHERE year = :year ORDER BY date DESC");
         //暂时不用
     }//对日期进行排序，然后返回合适的数据*/
-
 
 }

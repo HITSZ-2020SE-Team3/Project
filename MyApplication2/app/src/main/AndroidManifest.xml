@@ -29,6 +29,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".OtherLoginActivity" />
         <activity android:name=".LoginActicity" />
+        <activity android:name=".turnoverActivity" />
+        <activity android:name=".statisticActivity" />
         <activity
             android:name=".GestureUnlockActivity"
             android:exported="false" />
