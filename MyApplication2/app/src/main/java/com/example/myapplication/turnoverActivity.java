@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class turnoverActivity extends AppCompatActivity {
@@ -19,13 +21,13 @@ public class turnoverActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turnover);
-
+        //下面开始设置RecyclerView
         recyclerView = (RecyclerView) this.findViewById(R.id.billRecylcer);    //开始设置RecyclerView
         recyclerView.setHasFixedSize(true); //设置固定大小
         myLayoutManager = new LinearLayoutManager(this); //创建线性布局
         //myLayoutManager.setOrientation(OrientationHelper.VERTICAL);//设置组件放置方向为垂直方向
         recyclerView.setLayoutManager(myLayoutManager); //给RecyclerView设置布局管理器
-        myAdapter = new turnoverAdapter(allData);  //创建适配器，并且设置
+        myAdapter = new turnoverAdapter(allData,new ArrayList<Integer>(),0);  //创建适配器，并且设置
         recyclerView.setAdapter(myAdapter);
     }
 }
