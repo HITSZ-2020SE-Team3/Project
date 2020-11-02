@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -21,6 +22,12 @@ public class turnoverActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turnover);
+        //下面设置余额的显示
+        TextView remain = findViewById(R.id.the_account_remain_data);    //找到余额的显示文本
+        float result = statistic.getAllAccountRemain();
+        remain.setText(result + "元");
+        if(result > 0)      remain.setTextColor(Color.rgb(255,69,0));   //余额为正，设置为红色字体
+        else    remain.setTextColor(Color.rgb(255,69,0));   //余额为负，显示为绿色
         //下面开始设置RecyclerView
         recyclerView = (RecyclerView) this.findViewById(R.id.billRecylcer);    //开始设置RecyclerView
         recyclerView.setHasFixedSize(true); //设置固定大小

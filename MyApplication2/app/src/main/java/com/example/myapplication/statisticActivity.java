@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ public class statisticActivity extends AppCompatActivity {
     private List<String> allData = statistic.getAllAccount(); //所有账户名
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,7 @@ public class statisticActivity extends AppCompatActivity {
         if(allData.size() == 0)     Toast.makeText(statisticActivity.this, "当前无数据", Toast.LENGTH_SHORT).show();
         TextView remain = findViewById(R.id.all_account_remain_data);    //找到余额的显示文本
         float result = statistic.getAllAccountRemain();
-        remain.setText(String.valueOf(result) + "元");
+        remain.setText(result + "元");
         if(result > 0)      remain.setTextColor(Color.rgb(255,69,0));   //余额为正，设置为红色字体
         else    remain.setTextColor(Color.rgb(255,69,0));   //余额为负，显示为绿色
         //下面开始设置ReclyclerView

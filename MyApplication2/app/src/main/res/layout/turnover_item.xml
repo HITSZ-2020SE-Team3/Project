@@ -14,7 +14,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:textColor="@android:color/holo_blue_light"
-        android:textSize="20sp" />  <!--这里显示年+月的标题，也可以不显示，视情况而定-->
+        android:textSize="30sp" />  <!--这里显示年+月的标题，也可以不显示，视情况而定-->
 
     <TextView
         android:id="@+id/year"

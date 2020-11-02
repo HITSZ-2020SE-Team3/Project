@@ -53,8 +53,8 @@ public class accountAdapter extends RecyclerView.Adapter<accountAdapter.ViewHold
             public void onClick(final View v) {
                 //活动跳转到逐年/月查看账单的界面，需要传递账号、年/月选择的数据（由提示窗传递）
                 AlertDialog.Builder dialog = new AlertDialog.Builder(v.getContext());   //适配器是一个java类而非活动，所以需要传入这个上下文进行跳转控制
-                dialog.setTitle("您是否要查看该账户的逐年/逐月的账单数据？"); //设置标题
-                dialog.setMessage("请点击下面的按钮或点击窗口外以退出选择...");  //设置提醒词
+                dialog.setTitle("是否查看该账户的逐年/逐月账单数据？"); //设置标题
+                dialog.setMessage("请点击按钮或点击窗口外以退出选择...");  //设置提醒词
                 dialog.setPositiveButton("按年查看", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {    //点击后，跳转到按年查看的界面，功能号1
@@ -67,7 +67,7 @@ public class accountAdapter extends RecyclerView.Adapter<accountAdapter.ViewHold
                         v.getContext().startActivity(intent);   //适配器是一个java类而非活动，不能直接用startActivity来搞
                         }
                 });
-                dialog.setNegativeButton("",new DialogInterface.OnClickListener(){
+                dialog.setNegativeButton("按月查看",new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {    //点击后，跳转到按月查看的界面，功能号2
                         Intent intent = new Intent(v.getContext(), billClassify.class);
@@ -78,6 +78,7 @@ public class accountAdapter extends RecyclerView.Adapter<accountAdapter.ViewHold
                         v.getContext().startActivity(intent);   //适配器是一个java类而非活动，不能直接用startActivity来搞
                     }
                 });
+                dialog.show();  //展示出来……不然显示个锤子，老憨憨了
             };
         });
         return holder;

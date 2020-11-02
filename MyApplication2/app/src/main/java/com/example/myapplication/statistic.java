@@ -31,7 +31,7 @@ public class statistic {
         //按照时间倒序（新的在前面）筛选数据
         List<Integer> final_result = new ArrayList<>();
         for(DataBase data:result){
-            int temp = Integer.parseInt(data.getAccount());
+            int temp = data.getYear();
             if(!final_result.contains(temp))    final_result.add(temp); //去重
         }//取出所有日期的数值
         return final_result;
@@ -65,16 +65,27 @@ public class statistic {
     //现在的思路不用这么麻烦，直接总体上进行筛选
 
     public static List<Float> getRemainInAPeriodOfTime(List<DataBase> data){
-        List<Float> balance = new ArrayList<>(2);   //0位装收入，1位装支出
-        balance.set(0,(float)0);
-        balance.set(1,(float)0);    //初始化赋值为0
+        List<Float> balance = new ArrayList<>();   //0位装收入，1位装支出
+        balance.add((float)0);
+        balance.add((float)0);    //前两位初始化赋值为0
         for(DataBase temp:data){
             if(temp.getMoney() > 0) //说明为收入，放在0位累加
                 balance.set(0, balance.get(0) + temp.getMoney());
             else balance.set(1, balance.get(1) + temp.getMoney());   //反之，则放在1位（支出）累加
         }
+        balance.add( balance.get(0) + balance.get(1) );    //总和放2位，方便账单总额的显示
         return balance;
-    }//考虑求和计算一段时间的收入、支出值（如单个月，整年）
+    }//考虑求和计算一段时间的收入、支出值（如单个月，整年）---->待完善前端相关展示，现在没有时间去做
+    //因为是静态数据显示，所以在adapter中，拿不出来数组里的值，我们需要直接在活动设置其显示的内容
+    //正确的前端显示应该是recyclerView的嵌套，但是没时间做了
+
+    public static float getRemain(List<DataBase> data) {
+        float result = 0;
+        for(DataBase temp:data){
+            result += temp.getMoney();
+        }
+        return result;
+    }   //传入一些账单，计算它们的余额之和
 
     public static float getOneAccountRemain(String account){
         List<DataBase> anAccountBill = statistic.getOneAccountBill(account);

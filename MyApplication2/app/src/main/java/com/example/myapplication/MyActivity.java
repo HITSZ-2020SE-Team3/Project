@@ -52,8 +52,8 @@ public class MyActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.navigation_detail://统计
-//                        Intent intent1 = new Intent(ChartActivity.this, zhichu_page.class);
-//                        startActivity(intent1);
+                        Intent intent1 = new Intent(MyActivity.this, statisticActivity.class);
+                        startActivity(intent1);
                         break;
                     case R.id.navigation_liushui://流水
                         Intent intent2 = new Intent(MyActivity.this, turnoverActivity.class);

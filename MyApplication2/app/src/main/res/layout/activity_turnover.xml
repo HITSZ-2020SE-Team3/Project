@@ -31,11 +31,36 @@
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/the_account_remain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/toolbar"
+            android:layout_toRightOf="@+id/year"
+            android:text="账户总余额"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/the_account_remain_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/toolbar"
+            android:layout_toRightOf="@+id/the_account_remain"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="30sp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/billRecylcer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar"
+            android:layout_below="@+id/the_account_remain"
             android:scrollbars="vertical"
             />
 

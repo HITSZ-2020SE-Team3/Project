@@ -34,7 +34,7 @@ public class turnoverAdapter extends RecyclerView.Adapter<turnoverAdapter.ViewHo
         public ViewHolder(View view){
             super(view);
             billTitle = view.findViewById(R.id.bill_title);
-            billYear = view.findViewById(R.id.year);//这里对应上面类内部声明的变量
+            billYear = view.findViewById(R.id.year);    //这里对应上面类内部声明的变量，与前端展示连接起来
             billMonth = view.findViewById(R.id.month);
             billDay = view.findViewById(R.id.day);
             billNumber = view.findViewById(R.id.money);
@@ -68,19 +68,20 @@ public class turnoverAdapter extends RecyclerView.Adapter<turnoverAdapter.ViewHo
                 int temp = example.getYear();
                 if(!yearFlag.contains(temp)){
                     yearFlag.add(temp);
-                    holder.billTitle.setText(temp + "年");   //文字设置成年
+                    result += temp + "年";    //文字设置成xx年
                 }//如果没有遍历过，说明它应该标上年份的标题
                 break;
             case 2: //分账户月度
                 int temp1 = example.getYear();
                 int temp2 = example.getMonth();
+                String tempYear = "";
                 if(!yearFlag.contains(temp1)){
                     yearFlag.add(temp1);
-                    result += temp1 + "年";  //文字加上年份
                 }//检测到第一次出现的年份，文字存档，开始遍历月份
+                tempYear = temp1 + "年";  //文字加上年份
                 if(!monthFlag.contains(temp2)){
                     monthFlag.add(temp2);
-                    result += temp2 + "月";  //文字加上年份
+                    result = tempYear +  temp2 + "月";  //文字加上月份
                 }//检测到第一次出现的月份，文字存档
                 //由于取出数据时已经是时间降序，所以我们不需要额外的操作，直接继续遍历数据即可
                 break;
@@ -88,6 +89,8 @@ public class turnoverAdapter extends RecyclerView.Adapter<turnoverAdapter.ViewHo
                 break;
         }
         holder.billTitle.setText(result);
+        holder.billTitle.setTextColor(Color.rgb(255,215,0));    //设置时间标题为金色
+        //显示账户总余额为静态内容，在活动前端设置显示
         holder.billYear.setText(String.valueOf(example.getYear()) );  //与上面的自定义ViewHolder类接起来了
         holder.billMonth.setText(String.valueOf(example.getMonth()) );
         holder.billDay.setText(String.valueOf(example.getDay()) );
