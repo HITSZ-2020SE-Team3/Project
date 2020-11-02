@@ -52,16 +52,16 @@ public class accountAdapter extends RecyclerView.Adapter<accountAdapter.ViewHold
             @Override
             public void onClick(final View v) {
                 //活动跳转到逐年/月查看账单的界面，需要传递账号、年/月选择的数据（由提示窗传递）
-                int position = holder.getAdapterPosition(); //取得当前账户的坐标
-                final String account = allAccount.get(position);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(v.getContext());   //适配器是一个java类而非活动，所以需要传入这个上下文进行跳转控制
-                dialog.setTitle("您是否要查看" + account + "账户的逐年/逐月的账单数据？"); //设置标题
+                dialog.setTitle("您是否要查看该账户的逐年/逐月的账单数据？"); //设置标题
                 dialog.setMessage("请点击下面的按钮或点击窗口外以退出选择...");  //设置提醒词
                 dialog.setPositiveButton("按年查看", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {    //点击后，跳转到按年查看的界面，功能号1
                         //活动跳转到转账界面
                         Intent intent = new Intent(v.getContext(), billClassify.class);
+                        int position = holder.getAdapterPosition(); //取得当前账户的坐标
+                        String account = allAccount.get(position);
                         intent.putExtra("features",1);  //传输功能号1
                         intent.putExtra("account",account);    //传输账户名
                         v.getContext().startActivity(intent);   //适配器是一个java类而非活动，不能直接用startActivity来搞
@@ -71,7 +71,9 @@ public class accountAdapter extends RecyclerView.Adapter<accountAdapter.ViewHold
                     @Override
                     public void onClick(DialogInterface dialog, int which) {    //点击后，跳转到按月查看的界面，功能号2
                         Intent intent = new Intent(v.getContext(), billClassify.class);
-                        intent.putExtra("features",1);  //传输功能号2
+                        int position = holder.getAdapterPosition(); //取得当前账户的坐标
+                        String account = allAccount.get(position);
+                        intent.putExtra("features",2);  //传输功能号2
                         intent.putExtra("account",account);    //传输账户名
                         v.getContext().startActivity(intent);   //适配器是一个java类而非活动，不能直接用startActivity来搞
                     }
