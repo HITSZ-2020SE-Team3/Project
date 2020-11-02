@@ -54,6 +54,9 @@ public class ChartActivity extends AppCompatActivity {
     private int end_month_int = 0;
     private int end_day_int = 0;
 
+    private int start_time = 0;//存放用户输入的开始时间
+    private int end_time = 0;//存放用户输入的结束时间
+
     private boolean time_flag = false;//判断是否需要用时间筛选，true则需要
 
     @Override
@@ -500,21 +503,33 @@ public class ChartActivity extends AppCompatActivity {
                     end_month_int = Integer.valueOf(end_month);
                     end_day_int = Integer.valueOf(end_day);
 
-                    if(start_year_int <= end_year_int){
-                        if(start_month_int <= end_month_int){
-                            if(start_day_int <= end_day_int){
-                                Toast.makeText(ChartActivity.this, "时间筛选器保存成功", Toast.LENGTH_SHORT).show();
-                                time_flag = true;//需要进行时间筛选
-                                renewChart();
-                            }else{
-                                Toast.makeText(ChartActivity.this, "日期错误", Toast.LENGTH_SHORT).show();
-                            }
-                        }else {
-                            Toast.makeText(ChartActivity.this, "月份错误", Toast.LENGTH_SHORT).show();
-                        }
-                    }else {
-                        Toast.makeText(ChartActivity.this, "年份错误", Toast.LENGTH_SHORT).show();
+//                    int start_time = 0;
+//                    int end_time = 0;
+                    start_time = statistic.dateChange(start_year_int, start_month_int, start_day_int);
+                    end_time = statistic.dateChange(end_year_int, end_month_int, end_day_int);
+                    if(start_time <= end_time){
+                        Toast.makeText(ChartActivity.this, "时间筛选器保存成功", Toast.LENGTH_SHORT).show();
+                        time_flag = true;//需要进行时间筛选
+                        renewChart();
+                    }else{
+                        Toast.makeText(ChartActivity.this, "请输入正确的起止时间", Toast.LENGTH_SHORT).show();
                     }
+
+//                    if(start_year_int <= end_year_int){
+//                        if((start_year_int == end_year_int && start_month_int <= end_month_int)|| start_year_int < end_year_int){
+//                            if(start_day_int <= end_day_int){
+//                                Toast.makeText(ChartActivity.this, "时间筛选器保存成功", Toast.LENGTH_SHORT).show();
+//                                time_flag = true;//需要进行时间筛选
+//                                renewChart();
+//                            }else{
+//                                Toast.makeText(ChartActivity.this, "日期错误", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }else {
+//                            Toast.makeText(ChartActivity.this, "月份错误", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }else {
+//                        Toast.makeText(ChartActivity.this, "年份错误", Toast.LENGTH_SHORT).show();
+//                    }
                 }else{
                     Toast.makeText(ChartActivity.this, "请输入完整的年月日", Toast.LENGTH_SHORT).show();
                 }
@@ -524,14 +539,18 @@ public class ChartActivity extends AppCompatActivity {
 
     //判断w的数据能不能满足时间上的筛选条件，
     public boolean time_select(DataBase w){
+//        int time = w.getDate();//存放w中的时间信息
         //需要判断时间范围时
         if(time_flag){
-            if(w.getYear() >= start_year_int && w.getYear() <= end_year_int) {
-                if (w.getMonth() >= start_month_int && w.getMonth() <= end_month_int) {
-                    if (w.getDay() >= start_day_int && w.getDay() <= end_day_int) {
-                        return true;
-                    }
-                }
+//            if(w.getYear() >= start_year_int && w.getYear() <= end_year_int) {
+//                if (w.getMonth() >= start_month_int && w.getMonth() <= end_month_int) {
+//                    if (w.getDay() >= start_day_int && w.getDay() <= end_day_int) {
+//                        return true;
+//                    }
+//                }
+//            }
+            if(w.getDate() >= start_time && w.getDate() <= end_time){
+                return true;
             }
         } else {
             return true;//不需要判断时间范围时

@@ -77,7 +77,7 @@
                     android:clickable="true"
                     android:text="账户"
                     android:textColor="@android:color/holo_blue_light"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:paddingLeft="10dip"
                     android:paddingTop="2dip"
                     android:paddingRight="10dip"
@@ -98,7 +98,7 @@
                     android:clickable="true"
                     android:text="分类"
                     android:textColor="@android:color/holo_blue_light"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:paddingLeft="10dip"
                     android:paddingTop="2dip"
                     android:paddingRight="10dip"
@@ -137,7 +137,7 @@
                     android:clickable="true"
                     android:text="成员"
                     android:textColor="@android:color/holo_blue_light"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:paddingLeft="10dip"
                     android:paddingTop="2dip"
                     android:paddingRight="10dip"
@@ -157,7 +157,7 @@
                     android:clickable="true"
                     android:text="商家"
                     android:textColor="@android:color/holo_blue_light"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:paddingLeft="10dip"
                     android:paddingTop="2dip"
                     android:paddingRight="10dip"
@@ -182,10 +182,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
                     android:text="开始时间"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <EditText
                     android:id="@+id/start_year_edit"
@@ -204,11 +204,11 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/start_year_edit"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
                     android:layout_toRightOf="@+id/start_year_edit"
                     android:text="年"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <EditText
                     android:id="@+id/start_month_edit"
@@ -227,11 +227,11 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/start_month_edit"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
                     android:layout_toRightOf="@+id/start_month_edit"
                     android:text="月"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <EditText
                     android:id="@+id/start_day_edit"
@@ -250,22 +250,22 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/start_day_edit"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
                     android:layout_toRightOf="@+id/start_day_edit"
                     android:text="日"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/save_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginRight="10dp"
                     android:layout_alignParentEnd="true"
                     android:text="确定"
                     android:textColor="@android:color/holo_blue_light"
-                    android:textSize="20sp"
+                    android:textSize="17sp"
                     android:paddingLeft="10dip"
                     android:paddingTop="2dip"
                     android:paddingRight="10dip"
@@ -279,10 +279,10 @@
                     android:layout_below="@+id/start_time_view"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
                     android:text="结束时间"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <EditText
                     android:id="@+id/end_year_edit"
@@ -301,11 +301,11 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/end_year_edit"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
                     android:layout_toRightOf="@+id/end_year_edit"
                     android:text="年"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <EditText
                     android:id="@+id/end_month_edit"
@@ -324,11 +324,11 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/end_month_edit"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
                     android:layout_toRightOf="@+id/end_month_edit"
                     android:text="月"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <EditText
                     android:id="@+id/end_day_edit"
@@ -347,11 +347,11 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/end_day_edit"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
                     android:layout_toRightOf="@+id/end_day_edit"
                     android:text="日"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
             </RelativeLayout>
         </LinearLayout>
