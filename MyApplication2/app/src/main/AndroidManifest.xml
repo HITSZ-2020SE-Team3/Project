@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/ic_zhangben_128dp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VersionActivity"></activity>
+        <activity android:name=".billClassify"></activity>
+        <activity android:name=".VersionActivity" />
         <activity android:name=".AboutActivity" />
         <activity android:name=".MyActivity" />
         <activity android:name=".ChartActivity" />

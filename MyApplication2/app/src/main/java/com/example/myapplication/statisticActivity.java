@@ -10,7 +10,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.TestLooperManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -22,23 +24,36 @@ public class statisticActivity extends AppCompatActivity {
     private LinearLayoutManager myLayoutManager;    //声明一个线性布局管理类
     private List<String> allData = statistic.getAllAccount(); //所有账户名
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistic);
+       /* Button refresh = (Button) findViewById(R.id.refresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View v) {
+                                           allData.clear();
+                                           allData = statistic.getAllAccount(); //重新存储数据
+                                           myAdapter.notifyDataSetChanged();   //数据库可能发生变化，重新生成UI界面
+                                       }
+                                   }
 
-        TextView remain = findViewById(R.id.all_account_remain_data);    //找到余额文本显示
+        );*/    //这按钮反而把数据刷没了……暂时去掉它
+        if(allData.size() == 0)     Toast.makeText(statisticActivity.this, "当前无数据", Toast.LENGTH_SHORT).show();
+        TextView remain = findViewById(R.id.all_account_remain_data);    //找到余额的显示文本
         float result = statistic.getAllAccountRemain();
         remain.setText(String.valueOf(result) + "元");
         if(result > 0)      remain.setTextColor(Color.rgb(255,69,0));   //余额为正，设置为红色字体
         else    remain.setTextColor(Color.rgb(255,69,0));   //余额为负，显示为绿色
-
-        recyclerView = (RecyclerView) this.findViewById(R.id.accountRecylcer);    //开始设置RecyclerView
+        //下面开始设置ReclyclerView
+        recyclerView = (RecyclerView) this.findViewById(R.id.accountRecylcer);
         recyclerView.setHasFixedSize(true); //设置固定大小
         myLayoutManager = new LinearLayoutManager(this); //创建线性布局
         //myLayoutManager.setOrientation(OrientationHelper.VERTICAL);//设置组件放置方向为垂直方向
         recyclerView.setLayoutManager(myLayoutManager); //给RecyclerView设置布局管理器
-        myAdapter = new accountAdapter(allData);  //创建适配器，并且设置
+        myAdapter = new accountAdapter(allData);  //创建适配器，并且初始化数据
         recyclerView.setAdapter(myAdapter);
     }
+
 }

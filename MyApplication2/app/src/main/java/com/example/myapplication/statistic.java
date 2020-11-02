@@ -2,13 +2,11 @@ package com.example.myapplication;
 
 //本类为统计、筛选功能的后端代码
 
-import android.database.Cursor;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
 import org.litepal.LitePal;
-import org.litepal.crud.LitePalSupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,27 +25,18 @@ public class statistic {
     }//取出所有的账户（去重后放入一个列表中），前端应显示这些账户的余额
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<Integer> getAllDate(int dateType){
+    public static List<Integer> getAllYear(){
         String column;
-        switch (dateType){
-            //筛选出年份
-            case 2: //筛选出月份
-                column = "month";
-                break;
-            default:
-                column = "year";
-                break;
-        }
-        List<DataBase> result = LitePal.order(column+" desc").select("?",column).find(DataBase.class);
+        List<DataBase> result = LitePal.order("year desc").select("year").find(DataBase.class);
         //按照时间倒序（新的在前面）筛选数据
         List<Integer> final_result = new ArrayList<>();
         for(DataBase data:result){
             int temp = Integer.parseInt(data.getAccount());
-            final_result.add(temp);
+            if(!final_result.contains(temp))    final_result.add(temp); //去重
         }//取出所有日期的数值
-        return (List<Integer>) final_result.stream().distinct();    //去重
-    }//取出所有的日期（包括年、月、日，区分它们的不同在于输入的日期种类）
-    //似乎不需要这么麻烦吗？不行，至少得筛选出年份
+        return final_result;
+    }//取出所有的日期（包括年、月、日，它们的不同在于输入的日期种类）
+    //似乎不需要这么麻烦吗？不行，至少得筛选出年份，因此这个函数专门用于筛选年份的列表
 
     public static List<DataBase> getOneAccountBill(String account){
         return LitePal.where("account = ?",account).find(DataBase.class);

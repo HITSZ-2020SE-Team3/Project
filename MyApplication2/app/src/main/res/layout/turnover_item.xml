@@ -5,6 +5,17 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <!--这里按照顺序存储，展示年，月，数额，类别，账户这几项作为流水-->
+
+    <TextView
+        android:id="@+id/bill_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="20sp" />  <!--这里显示年+月的标题，也可以不显示，视情况而定-->
+
     <TextView
         android:id="@+id/year"
         android:layout_width="wrap_content"
@@ -12,6 +23,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
+        android:layout_below="@+id/bill_title"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="20sp" />  <!--这里显示年的数据+“年”字-->
 
@@ -22,6 +34,7 @@
         android:layout_marginLeft="1dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
+        android:layout_below="@+id/bill_title"
         android:layout_toRightOf="@+id/year"
         android:text="年"
         android:textColor="@android:color/holo_blue_light"
@@ -34,6 +47,7 @@
         android:layout_marginLeft="1dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
+        android:layout_below="@+id/bill_title"
         android:layout_toRightOf="@+id/year_character"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="20sp" />  <!--月份-->
@@ -45,6 +59,7 @@
         android:layout_marginLeft="0dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
+        android:layout_below="@+id/bill_title"
         android:layout_toRightOf="@+id/month"
         android:text="月"
         android:textColor="@android:color/holo_blue_light"
@@ -57,6 +72,7 @@
         android:layout_marginLeft="1dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
+        android:layout_below="@+id/bill_title"
         android:layout_toRightOf="@+id/month_character"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="20sp" />  <!--日-->
@@ -68,6 +84,7 @@
         android:layout_marginLeft="0dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
+        android:layout_below="@+id/bill_title"
         android:layout_toRightOf="@+id/day"
         android:text="日"
         android:textColor="@android:color/holo_blue_light"
@@ -132,5 +149,11 @@
         android:layout_below="@+id/special_data"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="20sp" />  <!--账单所属账户的值-->
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/account"
+        android:background="@color/material_blue_grey_80"/>
 
 </RelativeLayout>
