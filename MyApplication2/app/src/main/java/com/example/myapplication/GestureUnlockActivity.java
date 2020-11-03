@@ -105,7 +105,7 @@ public class GestureUnlockActivity extends AppCompatActivity {
                 public void onCreateFinished(String gestureCode) {
                     // 创建手势密码完成
                     GestureUnlock.getInstance().setGestureCode(GestureUnlockActivity.this, gestureCode);
-                    Intent intent = new Intent(GestureUnlockActivity.this,OtherLoginActivity.class);
+                    Intent intent = new Intent(GestureUnlockActivity.this,zhichu_page.class);
                     startActivityForResult(intent,1);
                     GestureUnlockActivity.this.finish();
                 }
