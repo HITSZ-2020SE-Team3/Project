@@ -1,21 +1,28 @@
 package com.example.myapplication;
 //这里是统计界面的活动（总体余额+各账户的余额）
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.TestLooperManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.List;
+
+import static com.google.android.material.bottomnavigation.LabelVisibilityMode.LABEL_VISIBILITY_LABELED;
 
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class statisticActivity extends AppCompatActivity {
@@ -31,6 +38,39 @@ public class statisticActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistic);
+
+        //点击底部的状态栏跳转到其他活动
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setLabelVisibilityMode(LABEL_VISIBILITY_LABELED);//使底部图标个数>5时能显示文字
+        navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.navigation_detail://统计
+                        Intent intent1 = new Intent(statisticActivity.this, statisticActivity.class);
+                        startActivity(intent1);
+                        break;
+                    case R.id.navigation_liushui://流水
+                        Intent intent2 = new Intent(statisticActivity.this, turnoverActivity.class);
+                        startActivity(intent2);
+                        break;
+                    case R.id.navigation_add://记账
+                        Intent intent3 = new Intent(statisticActivity.this, zhichu_page.class);
+                        startActivity(intent3);
+                        break;
+                    case R.id.navigation_chart://图表
+                        Intent intent4 = new Intent(statisticActivity.this, ChartActivity.class);
+                        startActivity(intent4);
+                        break;
+                    case R.id.navigation_person://我的
+                        Intent intent5 = new Intent(statisticActivity.this, MyActivity.class);
+                        startActivity(intent5);
+                        break;
+                }
+                return false;
+            }
+        });
+
        /* Button refresh = (Button) findViewById(R.id.refresh);
         refresh.setOnClickListener(new View.OnClickListener() {
                                        @Override
