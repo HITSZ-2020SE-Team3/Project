@@ -1,5 +1,6 @@
 package com.example.myapplication;
 //用于显示按年/月筛选的分账户账单的活动界面（复用了流水界面（赶进度.jpg））
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,9 +11,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.List;
+
+import static com.google.android.material.bottomnavigation.LabelVisibilityMode.LABEL_VISIBILITY_LABELED;
 
 public class billClassify extends AppCompatActivity {
 
@@ -27,6 +33,38 @@ public class billClassify extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turnover);
+
+        //点击底部的状态栏跳转到其他活动
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setLabelVisibilityMode(LABEL_VISIBILITY_LABELED);
+        navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.navigation_detail://统计
+                        Intent intent1 = new Intent(billClassify.this, statisticActivity.class);
+                        startActivity(intent1);
+                        break;
+                    case R.id.navigation_liushui://流水
+                        Intent intent2 = new Intent(billClassify.this, turnoverActivity.class);
+                        startActivity(intent2);
+                        break;
+                    case R.id.navigation_add://记账
+                        Intent intent3 = new Intent(billClassify.this, zhichu_page.class);
+                        startActivity(intent3);
+                        break;
+                    case R.id.navigation_chart://图表
+                        Intent intent4 = new Intent(billClassify.this, ChartActivity.class);
+                        startActivity(intent4);
+                        break;
+                    case R.id.navigation_person://我的
+                        Intent intent5 = new Intent(billClassify.this, MyActivity.class);
+                        startActivity(intent5);
+                        break;
+                }
+                return false;
+            }
+        });
 
         Intent intent = getIntent();    //取出传来的数据
         String account = intent.getStringExtra("account");  //拿出账户名
