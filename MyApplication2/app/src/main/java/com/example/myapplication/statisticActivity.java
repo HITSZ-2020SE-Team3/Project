@@ -89,7 +89,7 @@ public class statisticActivity extends AppCompatActivity {
         if(result > 0)      remain.setTextColor(Color.rgb(255,69,0));   //余额为正，设置为红色字体
         else    remain.setTextColor(Color.rgb(255,69,0));   //余额为负，显示为绿色
         //下面开始设置ReclyclerView
-        recyclerView = (RecyclerView) this.findViewById(R.id.accountRecylcer);
+        recyclerView = (RecyclerView) this.findViewById(R.id.accountRecycler);
         recyclerView.setHasFixedSize(true); //设置固定大小
         myLayoutManager = new LinearLayoutManager(this); //创建线性布局
         //myLayoutManager.setOrientation(OrientationHelper.VERTICAL);//设置组件放置方向为垂直方向
