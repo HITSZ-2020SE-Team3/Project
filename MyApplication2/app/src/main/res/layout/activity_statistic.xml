@@ -32,14 +32,16 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/background_main"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" /> <!--表示导航栏-->
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" > <!--表示导航栏-->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="各账户余额情况"
-            android:textColor="#ffffff"
-            android:textSize="20sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="各账户余额情况"
+                android:textColor="#ffffff"
+                android:textSize="20sp"/>
+
+        </androidx.appcompat.widget.Toolbar>
 
         <TextView
             android:id="@+id/all_account_remain"
